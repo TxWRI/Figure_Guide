@@ -1,0 +1,7 @@
+name: "TWRI Data Visualization Style Guide"
+output:
+  html_document:
+    css: style.css
+output_dir: docs
+navbar:
+  title: "TWRI Data Viz Style Guide"

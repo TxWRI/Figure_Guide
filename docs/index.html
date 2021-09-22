@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Texas Water Resources Institute Data Visualization Style Guide</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TWRI Data Viz Style Guide</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Texas Water Resources Institute Data Visualization Style Guide</h1>
+
+</div>
+
+
+<div id="executive-summary" class="section level1 unnumbered">
+<h1 class="unnumbered">Executive Summary</h1>
+<p>Use this data visualization style guide to create a uniform look and feel to all of TWRI’s charts and graphs. The purpose of this guide is to eliminate the burden of design and color decisions when creating charts and establish some minimum expectations of graphic elements. Consider the following information as general guidance only.</p>
+</div>
+<div id="chart-typography" class="section level1">
+<h1>Chart Typography</h1>
+<p>The TWRI and AgriLife brand guides do not specify a font for data visualization usage. We recommend a Sans Serif font for graphs and charts. Good choices include <em>Arial Nova Cond</em> (Windows), <em>Helvetica Neue Condensed</em> (MacOS), <em>Open Sans Condensed</em> (Open Source).</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Chart Parts
+</th>
+<th style="text-align:left;">
+Typefaces
+</th>
+<th style="text-align:right;">
+Print Size
+</th>
+<th style="text-align:right;">
+Presentation Size
+</th>
+<th style="text-align:left;">
+Case
+</th>
+<th style="text-align:left;">
+Notes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Title
+</td>
+<td style="text-align:left;">
+Arial Bold, Helvetica Bold, Open Sans Condensed Bold
+</td>
+<td style="text-align:right;">
+13.0
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Title Case
+</td>
+<td style="text-align:left;">
+Optional; conveys main point of the chart.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Subtitle
+</td>
+<td style="text-align:left;">
+Arial, Helvetica, Open Sans Condensed
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Optional; qualifies or clarifies the title.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X and Y axis title
+</td>
+<td style="text-align:left;">
+Arial, Helvetica, Open Sans Condensed
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Include units or multiplies in brackets [million cfu]
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X and Y axis label
+</td>
+<td style="text-align:left;">
+Arial, Helvetica, Open Sans Condensed
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Horzontal preferred, avoid units or multipliers.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Legend label
+</td>
+<td style="text-align:left;">
+Arial, Helvetica, Open Sans Condensed
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Horizontal preferred, avoid redunat labels
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Direct labels
+</td>
+<td style="text-align:left;">
+Arial Bold, Helvetica Bold, Open Sans Condensed Bold
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Used in line or column charts with three or fewer series.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Data point labels
+</td>
+<td style="text-align:left;">
+Arial, Helvetica, Open Sans Condensed
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Always horizontal. No units. Direct labels are preferable to data legends.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Source and notes
+</td>
+<td style="text-align:left;">
+Arial, Helvetica, Open Sans Condensed
+</td>
+<td style="text-align:right;">
+8.0
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+Sentence case
+</td>
+<td style="text-align:left;">
+Optional.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="chart-parts" class="section level1">
+<h1>Chart Parts</h1>
+<p>All figures must include axis labels. Axis titles (including units) must be included whenever continuous data is used. We recommend use of axis labels for discrete data, but they can be removed if the measurement variable if obvious and the space is needed (countries is an example of an axis label that isn’t always needed). Panel borders are included on all four sides of the plot. Horizontal gridlines are included for technical report figures. Do not use vertical girdlines or axis ticks on minor breaks. However, the use of minor tick marks on log-scaled axis is encouraged.</p>
+<div class="figure" style="text-align: center">
+<img src="resources/figures/blank_viz_guide-01.png" alt="Chart parts and specifications for printed visualizations" width="100%" />
+<p class="caption">
+Chart parts and specifications for printed visualizations
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="resources/figures/blank_viz_pp_guide-01.png" alt="Chart parts and specifications for web or PowerPoint visualizations" width="100%" />
+<p class="caption">
+Chart parts and specifications for web or PowerPoint visualizations
+</p>
+</div>
+<p>Tips:</p>
+<ul>
+<li><p>Titles, subtitles, in-chart source and notes are reserved for stand-alone figures only. Use figure captions to title and explain figures in technical reports.</p></li>
+<li><p>Legends can stretch horizontally along the bottom or stretch vertically on the right.</p></li>
+<li><p>TWRI technical report body is typically 6.5" wide. Export figures at 6.5" wide to take advantage of the full width in the document. Where available, export figures at high resolution (200-300 dpi).</p></li>
+<li><p>Powerpoint slides are either 10" wide x 7.5" tall (4:3 aspect slides) or 13.33" wide x 7.5" tall (16:9 aspect slides). Export figures at these dimensions and high resolution (200-300 dpi) to create a full screen figure.</p></li>
+</ul>
+<div id="image-formats" class="section level2">
+<h2>Image Formats</h2>
+<p>Generally speaking, .png files are the preferred image format. For photographic images or images where accurate color reproduction is required (some maps for example) use .tiff or .jpeg. For detailed discussion of image formats, see <a href="https://clauswilke.com/dataviz/image-file-formats.html" class="uri">https://clauswilke.com/dataviz/image-file-formats.html</a>.</p>
+</div>
+</div>
+<div id="color" class="section level1">
+<h1>Color</h1>
+<p>TWRI’s main colors are <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #0054a4 !important;">TWRI Blue (#0054a4)</span>, <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #5d0025 !important;">Maroon (#5d0025)</span>, <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #54565a !important;">Gray (#54565a)</span>, and <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #82adaa !important;">Teal (#82adaa)</span>. Color selection is based on the type of data presented. <em>Categorical</em> data are discrete data with no inherent order. Examples include names or places. <em>Sequential</em> data are ordered in a meaningful manner. Often, sequential data is ordered low to high. <em>Diverging</em> data is a type of sequential data where we are interested in the deviance from a middle neutral value.</p>
+<p>The following color palettes take some of the guess work of choosing colors that are largely consistent with TWRI branding.</p>
+<p><img src="index_files/figure-html/catcolors-1.png" width="900" style="display: block; margin: auto;" /></p>
+<p>Recognizing that these color palettes are not always suitable or the best option for visualizing data, consider the following very good color palette resources:</p>
+<p><em>Color Brewer</em></p>
+<p><a href="https://colorbrewer2.org/">Color Brewer</a> provides a set of discrete color palettes, some of which are colorblind friendly. Use the online tool to select colors based on data type, number of categories, and desired properties. Some examples are shown below. <img src="index_files/figure-html/brewercolors-1.png" width="950" style="display: block; margin: auto;" /></p>
+<p><em>Continuous Color Scales</em></p>
+<p>The <a href="https://bids.github.io/colormap/">mpl color maps</a> used by default in the matplotlib v2.0 Python library are designed for perpetual uniformity and are color blind friendly. There are implementations in <a href="https://cran.r-project.org/web/packages/viridis/">R</a>, <a href="http://www.met.reading.ac.uk/~ed/viridis.m">MatLab</a>, <a href="https://github.com/politiken-journalism/scale-color-perceptual">JavaScript/D3</a>, and <a href="https://www.arcgis.com/home/group.html?id=c81d01ceaf85406285b694ed2581027b#overview">ArcGIS Pro</a>.</p>
+<p><img src="index_files/figure-html/contcolors-1.png" width="600" style="display: block; margin: auto;" /></p>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<div id="bar-and-column-charts" class="section level2">
+<h2>Bar and Column Charts</h2>
+<p>Bar and column charts are used to compare the magnitude of measured data across different categories or treatments. Bar and column charts can be vertical or horizontal. They can also be grouped or stacked if we want to compare within categorical variables.</p>
+<p><em>Tips</em></p>
+<ul>
+<li><p>Bar height or length must be meaningful relative to each other. Be thoughtful when using log or square root units on the length axis.</p></li>
+<li><p>Bars start at zero (dot plots are preferable if the axis <em>does not</em> start at zero).</p></li>
+<li><p>Consider direct labeling the data values.</p></li>
+<li><p>If axis labels are too long to orient horizontally, flip the graph horizontally.</p></li>
+<li><p>Consider reordering the observation units by value to permit easy comparison (low values to high values)</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/unnamed-chunk-1-1.png" alt="Bar chart and column charts are used to compare one observational variable" width="900" />
+<p class="caption">
+Bar chart and column charts are used to compare one observational variable
+</p>
+</div>
+</div>
+<div id="line-graphs" class="section level2">
+<h2>Line Graphs</h2>
+<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure @ref(fig:cumrainfall)). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
+<p><em>Tips</em></p>
+<ul>
+<li><p>If you have many lines, highlight and label the data you want to convey (Figure @ref(fig:covidline)).</p></li>
+<li><p>Discretely measured events should be shown as points, not connected lines. The lines imply data measurements between two discrete events. For example, if your x axis units are day but the measurements are a month apart, use points. However, if your x-axis units are month, then a line is appropriate.</p></li>
+<li><p>Regression lines should be plotted with the data to convey adequacy of the fit.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/cumrainfall-1.png" alt="Use colors and directly label lines where possible" width="800" />
+<p class="caption">
+Use colors and directly label lines where possible
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/covidline-1.png" alt="Highlight important data if there are too many observational units for the reader to discern" width="800" />
+<p class="caption">
+Highlight important data if there are too many observational units for the reader to discern
+</p>
+</div>
+</div>
+<div id="scatterplots" class="section level2">
+<h2>Scatterplots</h2>
+<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure @ref(fig:scatter)).</p>
+<p><em>Tips</em></p>
+<ul>
+<li><p>If there is inherent order to the measurements, it may help to connect points with a line.</p></li>
+<li><p>If there are a large number of points, use transparency or consider bi-variate density plots.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/scatter-1.png" alt="Scatter plots display the relationship between quantitative variables." width="900" />
+<p class="caption">
+Scatter plots display the relationship between quantitative variables.
+</p>
+</div>
+</div>
+<div id="distributions" class="section level2">
+<h2>Distributions</h2>
+<div id="histogram" class="section level3">
+<h3>Histogram</h3>
+<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure @ref(fig:histogram)).</p>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/histogram-1.png" alt="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins" width="900" />
+<p class="caption">
+Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="density-plot" class="section level3">
+<h3>Density Plot</h3>
+<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure @ref(fig:densplot)). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/densplot-1.png" alt="Density plots display the estimated probability distribution of a continuous variable." width="900" />
+<p class="caption">
+Density plots display the estimated probability distribution of a continuous variable.
+</p>
+</div>
+</div>
+<div id="box-plot" class="section level3">
+<h3>Box Plot</h3>
+<p>Box plots are used to visualize and compare the median, interquartile range, and outliers of a given dataset. Reserve boxplots for technical reports and scientific articles. Generally, they are not suitable for a general audience. Instead show the distribution of points instead (or do both).</p>
+<p><em>Tips</em></p>
+<ul>
+<li><p>Consider adding a legend explaining the parts of a boxplot (Figure @ref(fig:boxlegend)).</p></li>
+<li><p>For datasets with few points, consider adding the measured values as points above the boxplots. This can help identify potential issues with the dataset.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/boxlegend-1.png" alt="Use boxplots to display the distributional properties of continuous variables" width="900" />
+<p class="caption">
+Use boxplots to display the distributional properties of continuous variables
+</p>
+</div>
+</div>
+</div>
+<div id="survey-data" class="section level2">
+<h2>Survey data</h2>
+<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure @ref(fig:likert)). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/likert-1.png" alt="Likert plots are an option for displaying ordered survey response data." width="900" />
+<p class="caption">
+Likert plots are an option for displaying ordered survey response data.
+</p>
+</div>
+</div>
+</div>
+<div id="potential-pitfalls" class="section level1">
+<h1>Potential Pitfalls</h1>
+<div id="data-transformations" class="section level2">
+<h2>Data Transformations</h2>
+<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure @ref(fig:logtransform)). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/logtransform-1.png" alt="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)" width="900" />
+<p class="caption">
+Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)
+</p>
+</div>
+</div>
+<div id="error-bars" class="section level2">
+<h2>Error Bars</h2>
+<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure @ref(fig:errorbars)).</p>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/errorbars-1.png" alt="Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots." width="800" />
+<p class="caption">
+Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
+</p>
+</div>
+</div>
+<div id="visualizing-proportions" class="section level2">
+<h2>Visualizing Proportions</h2>
+<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure @ref(fig:pies)). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure @ref(fig:groupedbars)).</p>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/pies-1.png" alt="It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right)." width="900" />
+<p class="caption">
+It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="index_files/figure-html/groupedbars-1.png" alt="Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right)." width="900" />
+<p class="caption">
+Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
+</p>
+</div>
+</div>
+<div id="avoiding-three-dimensional-visualizations" class="section level2">
+<h2>Avoiding Three Dimensional Visualizations</h2>
+<p>Generally speaking, three dimensional visualizations do not translate well to printed figures. Some exceptions topography maps with hillshading, or three dimensional objects (something we rarely encounter in our field). Web graphics that permit rotating of graphs are also a good place to use three dimensional graphics.</p>
+<p>Instead of resorting to x-, y-, and z- scales; combine color, size, or shape to incorporate additional continuous or discrete variables. Finally, some software packages allow the use of small multiples plots. Small multiples plots are essentially a gridded multi-panel plot that subset the data into groups and facilitate quick comparisons across those groups.</p>
+</div>
+</div>
+<div id="software-notes" class="section level1">
+<h1>Software Notes</h1>
+<p>You are not restricted to using a specific software for data visualization. Typical software tools include Microsoft Excel, ArcGIS Pro, R Statistical Software, Python, SAS, STATA, or SPSS. While you are not restricted to a particular software you are encouraged to store data files in non-proprietary formats when possible. Comma separated value (CSV) files are plain text files that are readable by just about all software. Excel files (.xls, .xlsx) can be opened by other software, but Excel has a bad habit of automatically formatting data or changing values (especially dates). Keep the raw data in a .csv or related file and do your analysis in a separate .xls file to ensure the raw data is not altered. Scripts written in any other software should also avoid altering the raw data.</p>
+</div>
+<div id="open-source-resources" class="section level1">
+<h1>Open Source Resources</h1>
+<p>For additional information on choosing and designing data visualization products see the following resources:</p>
+<ul>
+<li><p><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a> - Claus Wilke: Web and physical book that is software agnostic and focuses on choosing and designing visualizations.</p></li>
+<li><p><a href="https://socviz.co/">Data Visualization A Practical Introduction</a> - Kieran Healy: Web and physical book walks through choosing and designing visualizations using the R statistical software.</p></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

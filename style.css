@@ -1,0 +1,39 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@400;600&display=swap');
+
+ /*------------- Whole Document---------------- */
+ 
+ 
+ /*------------- Body and header text---------------- */
+
+body {
+    font-family: 'Crimson Pro', serif;
+    font-size: 19px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Oswald', arial, sans-serif;
+}
+
+.title {
+  font-family: 'Oswald';
+  font-size: 4em !important;
+  color: #0054a4);
+  margin-top: 0.275em !important;
+  margin-bottom: 0.35em !important;
+}
+
+.subtitle {
+  font-family: 'Oswald';
+  color: #0054a4);
+}
+
+
+/* links */
+a { 
+  color: #82adaa;
+}
+
+a:hover {
+ color: #50a0b0; /* darker color when hovering */
+}
