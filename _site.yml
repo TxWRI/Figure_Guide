@@ -1,7 +1,11 @@
 name: "TWRI Data Visualization Style Guide"
 output:
-  html_document:
-    css: style.css
+  bookdown::html_document2:
+    css: assets/style.css
+    number_sections: false
+    theme: yeti
+    toc: true
+    toc_float: true
 output_dir: docs
 navbar:
   title: "TWRI Data Viz Style Guide"

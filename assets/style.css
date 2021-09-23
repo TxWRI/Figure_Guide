@@ -1,0 +1,136 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@300;400;600&display=swap');
+
+ /*------------- Whole Document---------------- */
+ 
+/*----------------ADDING WHITE SPACE-------------*/
+
+.title {
+  margin-top: 2em !important;
+  margin-bottom: 0.75em;
+}
+
+.section h1,
+.section h2, 
+.section h3, 
+.section h4, 
+.section h5 { 
+  padding-top: 3em !important; /*adding so much padding because theme adds a margin-top: -65px by default */
+  margin-bottom: 0.75em;
+}
+
+  /* Space Between TOC and 
+  Righthand side content on large screens */
+
+ @media (min-width: 992px) {
+    .col-md-9 {
+      width: 75%;
+      padding-left: 5em !important;
+    }
+ }
+ 
+ /*------------Table of Contents (TOC)----------- */
+ 
+ 
+  /*----------LOGO above TOC---------*/
+
+#TOC::before {
+  content: "";
+  display: block;
+  height: 200px;
+  margin: 2em 20px 40px 20px;
+  background-image: url("twri_logo.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+ 
+ /*----------TOC Styling---------*/
+.tocify {
+  border: none;   /*Removes border */
+  border-radius: 0px; /* Gets rid of rounded corners on TOC */
+  font-size: 16px;
+  font-family: 'Oswald', arial, sans-serif;
+  font-weight: 300;
+}
+
+.tocify ul, .tocify li { /* Increases spacing between TOC headers*/
+    line-height: 25px !important;
+    font-size: 16px;
+}
+
+.tocify ul {
+  border-right: solid 1px #eee; /* Thin right border on TOC list */
+}
+
+/* Active TOC links*/
+
+.list-group-item.active, 
+.list-group-item.active:hover{
+  color: #82adaa;
+  background-color: #ffffff;
+  border-color: #ccc;
+}
+
+/* Hovered TOC links*/
+
+.list-group-item:hover { 
+  color: #82adaa;
+  background-color: #ffffff;
+  border: none;
+}
+ 
+ 
+ /*------------- Body and header text---------------- */
+
+body {
+    font-family: 'Crimson Pro', serif;
+    font-size: 19px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Oswald', arial, sans-serif;
+}
+
+.title {
+  font-family: 'Oswald';
+  font-size: 4em !important;
+  color: #0054a4);
+  margin-top: 0.275em !important;
+  margin-bottom: 0.35em !important;
+}
+
+.subtitle {
+  font-family: 'Oswald';
+  color: #0054a4);
+}
+
+
+/* links */
+a { 
+  color: #82adaa;
+}
+
+a:hover {
+ color: #50a0b0; /* darker color when hovering */
+}
+
+
+ /*------------- Table formatting---------------- */
+ 
+ th {
+   font-family: 'Oswald', arial, sans-serif;
+   font-weight: 400;
+ }
+ 
+ tbody {
+   font-family: 'Oswald', arial, sans-serif;
+   font-weight: 300;
+ }
+ 
+/* Remove excessive white space at the end of page */
+
+.tocify-extend-page {
+  height: 100px !important; 
+}

@@ -38,29 +38,29 @@ Use this data visualization style guide to create a uniform look and feel to all
 
 # Chart Typography
 
-The TWRI and AgriLife brand guides do not specify a font for data visualization usage. We recommend a Sans Serif font for graphs and charts. Good choices include *Arial Nova Cond* (Windows), *Helvetica Neue Condensed* (MacOS), *Open Sans Condensed* (Open Source).
+The TWRI and AgriLife brand guides do not specify a font for data visualization usage. We recommend a sans serif font for graphs and charts. Good choices include *Arial Nova Cond* (Windows), *Helvetica Neue Condensed* (MacOS), *Open Sans Condensed* (Open Source). Sizes are general recommendations, minor adjustments might be necessary.
 
 ```{r typotable}
 typography_table <- tibble::tibble(
   "Chart Parts" = c("Title", "Subtitle", "X and Y axis title", "X and Y axis label", "Legend label", "Direct labels", "Data point labels", "Source and notes"),
-  "Typefaces" = c("Arial Bold, Helvetica Bold, Open Sans Condensed Bold", rep("Arial, Helvetica, Open Sans Condensed",4), "Arial Bold, Helvetica Bold, Open Sans Condensed Bold", rep("Arial, Helvetica, Open Sans Condensed",2)),
-  "Print Size" = c(13, 10, 9.5, 9.5, 10, 9.5, 9.5, 8),
-  "Presentation Size" = c(18, 14, 12, 12, 12, 12, 12, 11),
+  "Font Weight" = c("Bold", rep("Normal",4), "Bold", rep("Normal",2)),
+  "Size (Printed)" = c(13, 10, 9.5, 9.5, 10, 9.5, 9.5, 8),
+  "Size (Web/Presentation)" = c(18, 14, 12, 12, 12, 12, 12, 11),
   "Case" = c("Title Case", rep("Sentence case",7)),
   "Notes" = c("Optional; conveys main point of the chart.",
               "Optional; qualifies or clarifies the title.",
               "Include units or multiplies in brackets [million cfu]",
               "Horzontal preferred, avoid units or multipliers.",
-              "Horizontal preferred, avoid redunat labels",
+              "Horizontal preferred, avoid redundant labels",
               "Used in line or column charts with three or fewer series.",
               "Always horizontal. No units. Direct labels are preferable to data legends.",
               "Optional.")
   )
 knitr::kable(typography_table, booktabs = TRUE, escape = F,
              col.names = linebreak(c("Chart Parts",
-                                     "Typefaces",
-                                     "Print Size",
-                                     "Presentation Size",
+                                     "Font Weight",
+                                     "Size (Printed)",
+                                     "Size (Web/Presentation)",
                                      "Case",
                                      "Notes")),
              align = "llrrll") %>%
@@ -75,13 +75,13 @@ knitr::kable(typography_table, booktabs = TRUE, escape = F,
 All figures must include axis labels. Axis titles (including units) must be included whenever continuous data is used. We recommend use of axis labels for discrete data, but they can be removed if the measurement variable if obvious and the space is needed (countries is an example of an axis label that isn't always needed). Panel borders are included on all four sides of the plot. Horizontal gridlines are included for technical report figures. Do not use vertical girdlines or axis ticks on minor breaks. However, the use of minor tick marks on log-scaled axis is encouraged.
 
 ```{r blankprintfig, out.width="100%", fig.cap="Chart parts and specifications for printed visualizations"}
-knitr::include_graphics("resources/figures/blank_viz_guide-01.png")
+knitr::include_graphics("assets/figures/blank_viz_guide-01.png")
 ```
 
 
 
 ```{r blankpresfig, out.width="100%", fig.cap="Chart parts and specifications for web or PowerPoint visualizations"}
-knitr::include_graphics("resources/figures/blank_viz_pp_guide-01.png")
+knitr::include_graphics("assets/figures/blank_viz_pp_guide-01.png")
 ```
 
 
@@ -362,7 +362,7 @@ Line graphs are typically used to display trends over time. Use different colors
 water_year <- function(date) {
   ifelse(month(date) < 10, year(date), year(date)+1)}
 
-df <- readr::read_csv("resources/data/easterwood.csv",
+df <- readr::read_csv("assets/data/easterwood.csv",
                 col_types = "cDcnn")
 
 df <- df %>% 
@@ -398,7 +398,7 @@ ggplot(df) +
 
  
 ```{r covidline, message=FALSE, warning=FALSE, fig.cap="Highlight important data if there are too many observational units for the reader to discern", fig.width = 800/120, fig.height = 500/120}
-covid <- readr::read_csv("resources/data/covid.csv")
+covid <- readr::read_csv("assets/data/covid.csv")
 
 covid_us <- covid %>%
   filter(location == "United States")
@@ -438,7 +438,7 @@ Basic scatterplots are used to display the relationship between two or more quan
  - If there are a large number of points, use transparency or consider bi-variate density plots.
 
 ```{r scatter, message=FALSE, warning=FALSE, fig.cap="Scatter plots display the relationship between quantitative variables.", fig.width = 900/120, fig.height = 500/120}
-df <- readr::read_csv("resources/data/easterwood.csv",
+df <- readr::read_csv("assets/data/easterwood.csv",
                 col_types = "cDcnn")
 
 
@@ -584,7 +584,7 @@ p1 + theme_TWRI_print() + labs(title = "Example Likert Plot",
 
 ```
 
-# Potential Pitfalls
+# Common Mistakes
 
 ## Data Transformations
 
@@ -619,7 +619,7 @@ Error bars are conventionally used to display the *uncertainty* in estimates, no
 
 
 ```{r errorbars, fig.cap="Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.", fig.width = 800/120, fig.height = 800/120}
-df <- readr::read_csv("resources/data/easterwood.csv",
+df <- readr::read_csv("assets/data/easterwood.csv",
                 col_types = "cDcnn")
 
 
@@ -746,7 +746,7 @@ p1 + p2 + plot_layout(guides = 'collect') &
   
 ```
 
-## Avoiding Three Dimensional Visualizations
+## Three Dimensions
 
 Generally speaking, three dimensional visualizations do not translate well to printed figures. Some exceptions topography maps with hillshading, or three dimensional objects (something we rarely encounter in our field). Web graphics that permit rotating of graphs are also a good place to use three dimensional graphics. 
 
@@ -759,8 +759,14 @@ You are not restricted to using a specific software for data visualization. Typi
 
 # Open Source Resources
 
-For additional information on choosing and designing data visualization products see the following resources:
+For additional information on choosing and designing data visualization products see the following resources that are available both freely online and in print form.
 
- - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) - Claus Wilke: Web and physical book that is software agnostic and focuses on choosing and designing visualizations.
+ - *Claus Wilke*. [Fundamentals of Data Visualization.](https://clauswilke.com/dataviz/) - Describes how to chose and design data visualization based on data type and the message you want to communicate. The book is software agnostic and mainly describes best practices in data visualization and is highly opinionated about design and aesthetics.
+ 
+ - *Hadley Wickham, Garret Grolemund*. [R for Data Science.](https://r4ds.had.co.nz/) - Focuses on using R as a data processing programming language. Covers the fundamentals of using `R` and `ggplot` to do analysis and data visualization. This is highly recommended if you are just getting started using `R`.
+ 
+ - *Jake VanderPlas*. [Python Data Science Handbook.](https://jakevdp.github.io/PythonDataScienceHandbook/) - Introduction to `Python` as a data analysis programming tool. In particular, a focus on the `Matplotlib` and `Seaborn` data visualization libraries.
 
- - [Data Visualization A Practical Introduction](https://socviz.co/) - Kieran Healy: Web and physical book walks through choosing and designing visualizations using the R statistical software.
+ - *Kieran Healy*. [Data Visualization: A Practical Introduction.](https://socviz.co/) - This book focuses on using `R` and `ggplot2` to develop data visualizations. Good follow-up to *R for Data Science*.
+ 
+ - *Victor Olaya*. [Introduction to GIS.](https://volaya.github.io/gis-book/en/index.html) - An abridged book that introduces GIS concepts and visualization of geographic data. This is a software agnostic book. 

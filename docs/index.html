@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -59,7 +62,7 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 
 
 
@@ -221,6 +224,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -228,6 +294,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -263,12 +339,12 @@ $(document).ready(function () {
 
 
 <div id="executive-summary" class="section level1 unnumbered">
-<h1 class="unnumbered">Executive Summary</h1>
+<h1>Executive Summary</h1>
 <p>Use this data visualization style guide to create a uniform look and feel to all of TWRI’s charts and graphs. The purpose of this guide is to eliminate the burden of design and color decisions when creating charts and establish some minimum expectations of graphic elements. Consider the following information as general guidance only.</p>
 </div>
 <div id="chart-typography" class="section level1">
 <h1>Chart Typography</h1>
-<p>The TWRI and AgriLife brand guides do not specify a font for data visualization usage. We recommend a Sans Serif font for graphs and charts. Good choices include <em>Arial Nova Cond</em> (Windows), <em>Helvetica Neue Condensed</em> (MacOS), <em>Open Sans Condensed</em> (Open Source).</p>
+<p>The TWRI and AgriLife brand guides do not specify a font for data visualization usage. We recommend a sans serif font for graphs and charts. Good choices include <em>Arial Nova Cond</em> (Windows), <em>Helvetica Neue Condensed</em> (MacOS), <em>Open Sans Condensed</em> (Open Source). Sizes are general recommendations, minor adjustments might be necessary.</p>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -276,13 +352,13 @@ $(document).ready(function () {
 Chart Parts
 </th>
 <th style="text-align:left;">
-Typefaces
+Font Weight
 </th>
 <th style="text-align:right;">
-Print Size
+Size (Printed)
 </th>
 <th style="text-align:right;">
-Presentation Size
+Size (Web/Presentation)
 </th>
 <th style="text-align:left;">
 Case
@@ -298,7 +374,7 @@ Notes
 Title
 </td>
 <td style="text-align:left;">
-Arial Bold, Helvetica Bold, Open Sans Condensed Bold
+Bold
 </td>
 <td style="text-align:right;">
 13.0
@@ -318,7 +394,7 @@ Optional; conveys main point of the chart.
 Subtitle
 </td>
 <td style="text-align:left;">
-Arial, Helvetica, Open Sans Condensed
+Normal
 </td>
 <td style="text-align:right;">
 10.0
@@ -338,7 +414,7 @@ Optional; qualifies or clarifies the title.
 X and Y axis title
 </td>
 <td style="text-align:left;">
-Arial, Helvetica, Open Sans Condensed
+Normal
 </td>
 <td style="text-align:right;">
 9.5
@@ -358,7 +434,7 @@ Include units or multiplies in brackets [million cfu]
 X and Y axis label
 </td>
 <td style="text-align:left;">
-Arial, Helvetica, Open Sans Condensed
+Normal
 </td>
 <td style="text-align:right;">
 9.5
@@ -378,7 +454,7 @@ Horzontal preferred, avoid units or multipliers.
 Legend label
 </td>
 <td style="text-align:left;">
-Arial, Helvetica, Open Sans Condensed
+Normal
 </td>
 <td style="text-align:right;">
 10.0
@@ -390,7 +466,7 @@ Arial, Helvetica, Open Sans Condensed
 Sentence case
 </td>
 <td style="text-align:left;">
-Horizontal preferred, avoid redunat labels
+Horizontal preferred, avoid redundant labels
 </td>
 </tr>
 <tr>
@@ -398,7 +474,7 @@ Horizontal preferred, avoid redunat labels
 Direct labels
 </td>
 <td style="text-align:left;">
-Arial Bold, Helvetica Bold, Open Sans Condensed Bold
+Bold
 </td>
 <td style="text-align:right;">
 9.5
@@ -418,7 +494,7 @@ Used in line or column charts with three or fewer series.
 Data point labels
 </td>
 <td style="text-align:left;">
-Arial, Helvetica, Open Sans Condensed
+Normal
 </td>
 <td style="text-align:right;">
 9.5
@@ -438,7 +514,7 @@ Always horizontal. No units. Direct labels are preferable to data legends.
 Source and notes
 </td>
 <td style="text-align:left;">
-Arial, Helvetica, Open Sans Condensed
+Normal
 </td>
 <td style="text-align:right;">
 8.0
@@ -459,16 +535,16 @@ Optional.
 <div id="chart-parts" class="section level1">
 <h1>Chart Parts</h1>
 <p>All figures must include axis labels. Axis titles (including units) must be included whenever continuous data is used. We recommend use of axis labels for discrete data, but they can be removed if the measurement variable if obvious and the space is needed (countries is an example of an axis label that isn’t always needed). Panel borders are included on all four sides of the plot. Horizontal gridlines are included for technical report figures. Do not use vertical girdlines or axis ticks on minor breaks. However, the use of minor tick marks on log-scaled axis is encouraged.</p>
-<div class="figure" style="text-align: center">
-<img src="resources/figures/blank_viz_guide-01.png" alt="Chart parts and specifications for printed visualizations" width="100%" />
+<div class="figure" style="text-align: center"><span id="fig:blankprintfig"></span>
+<img src="assets/figures/blank_viz_guide-01.png" alt="Chart parts and specifications for printed visualizations" width="100%" />
 <p class="caption">
-Chart parts and specifications for printed visualizations
+Figure 1: Chart parts and specifications for printed visualizations
 </p>
 </div>
-<div class="figure" style="text-align: center">
-<img src="resources/figures/blank_viz_pp_guide-01.png" alt="Chart parts and specifications for web or PowerPoint visualizations" width="100%" />
+<div class="figure" style="text-align: center"><span id="fig:blankpresfig"></span>
+<img src="assets/figures/blank_viz_pp_guide-01.png" alt="Chart parts and specifications for web or PowerPoint visualizations" width="100%" />
 <p class="caption">
-Chart parts and specifications for web or PowerPoint visualizations
+Figure 2: Chart parts and specifications for web or PowerPoint visualizations
 </p>
 </div>
 <p>Tips:</p>
@@ -490,7 +566,8 @@ Chart parts and specifications for web or PowerPoint visualizations
 <p><img src="index_files/figure-html/catcolors-1.png" width="900" style="display: block; margin: auto;" /></p>
 <p>Recognizing that these color palettes are not always suitable or the best option for visualizing data, consider the following very good color palette resources:</p>
 <p><em>Color Brewer</em></p>
-<p><a href="https://colorbrewer2.org/">Color Brewer</a> provides a set of discrete color palettes, some of which are colorblind friendly. Use the online tool to select colors based on data type, number of categories, and desired properties. Some examples are shown below. <img src="index_files/figure-html/brewercolors-1.png" width="950" style="display: block; margin: auto;" /></p>
+<p><a href="https://colorbrewer2.org/">Color Brewer</a> provides a set of discrete color palettes, some of which are colorblind friendly. Use the online tool to select colors based on data type, number of categories, and desired properties. Some examples are shown below.
+<img src="index_files/figure-html/brewercolors-1.png" width="950" style="display: block; margin: auto;" /></p>
 <p><em>Continuous Color Scales</em></p>
 <p>The <a href="https://bids.github.io/colormap/">mpl color maps</a> used by default in the matplotlib v2.0 Python library are designed for perpetual uniformity and are color blind friendly. There are implementations in <a href="https://cran.r-project.org/web/packages/viridis/">R</a>, <a href="http://www.met.reading.ac.uk/~ed/viridis.m">MatLab</a>, <a href="https://github.com/politiken-journalism/scale-color-perceptual">JavaScript/D3</a>, and <a href="https://www.arcgis.com/home/group.html?id=c81d01ceaf85406285b694ed2581027b#overview">ArcGIS Pro</a>.</p>
 <p><img src="index_files/figure-html/contcolors-1.png" width="600" style="display: block; margin: auto;" /></p>
@@ -508,47 +585,47 @@ Chart parts and specifications for web or PowerPoint visualizations
 <li><p>If axis labels are too long to orient horizontally, flip the graph horizontally.</p></li>
 <li><p>Consider reordering the observation units by value to permit easy comparison (low values to high values)</p></li>
 </ul>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
 <img src="index_files/figure-html/unnamed-chunk-1-1.png" alt="Bar chart and column charts are used to compare one observational variable" width="900" />
 <p class="caption">
-Bar chart and column charts are used to compare one observational variable
+Figure 3: Bar chart and column charts are used to compare one observational variable
 </p>
 </div>
 </div>
 <div id="line-graphs" class="section level2">
 <h2>Line Graphs</h2>
-<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure @ref(fig:cumrainfall)). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
+<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure <a href="#fig:cumrainfall">4</a>). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
 <p><em>Tips</em></p>
 <ul>
-<li><p>If you have many lines, highlight and label the data you want to convey (Figure @ref(fig:covidline)).</p></li>
+<li><p>If you have many lines, highlight and label the data you want to convey (Figure <a href="#fig:covidline">5</a>).</p></li>
 <li><p>Discretely measured events should be shown as points, not connected lines. The lines imply data measurements between two discrete events. For example, if your x axis units are day but the measurements are a month apart, use points. However, if your x-axis units are month, then a line is appropriate.</p></li>
 <li><p>Regression lines should be plotted with the data to convey adequacy of the fit.</p></li>
 </ul>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:cumrainfall"></span>
 <img src="index_files/figure-html/cumrainfall-1.png" alt="Use colors and directly label lines where possible" width="800" />
 <p class="caption">
-Use colors and directly label lines where possible
+Figure 4: Use colors and directly label lines where possible
 </p>
 </div>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:covidline"></span>
 <img src="index_files/figure-html/covidline-1.png" alt="Highlight important data if there are too many observational units for the reader to discern" width="800" />
 <p class="caption">
-Highlight important data if there are too many observational units for the reader to discern
+Figure 5: Highlight important data if there are too many observational units for the reader to discern
 </p>
 </div>
 </div>
 <div id="scatterplots" class="section level2">
 <h2>Scatterplots</h2>
-<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure @ref(fig:scatter)).</p>
+<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure <a href="#fig:scatter">6</a>).</p>
 <p><em>Tips</em></p>
 <ul>
 <li><p>If there is inherent order to the measurements, it may help to connect points with a line.</p></li>
 <li><p>If there are a large number of points, use transparency or consider bi-variate density plots.</p></li>
 </ul>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:scatter"></span>
 <img src="index_files/figure-html/scatter-1.png" alt="Scatter plots display the relationship between quantitative variables." width="900" />
 <p class="caption">
-Scatter plots display the relationship between quantitative variables.
+Figure 6: Scatter plots display the relationship between quantitative variables.
 </p>
 </div>
 </div>
@@ -556,22 +633,22 @@ Scatter plots display the relationship between quantitative variables.
 <h2>Distributions</h2>
 <div id="histogram" class="section level3">
 <h3>Histogram</h3>
-<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure @ref(fig:histogram)).</p>
-<div class="figure" style="text-align: center">
+<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure <a href="#fig:histogram">7</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:histogram"></span>
 <img src="index_files/figure-html/histogram-1.png" alt="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins" width="900" />
 <p class="caption">
-Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins
+Figure 7: Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins
 </p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="density-plot" class="section level3">
 <h3>Density Plot</h3>
-<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure @ref(fig:densplot)). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
-<div class="figure" style="text-align: center">
+<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure <a href="#fig:densplot">8</a>). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
+<div class="figure" style="text-align: center"><span id="fig:densplot"></span>
 <img src="index_files/figure-html/densplot-1.png" alt="Density plots display the estimated probability distribution of a continuous variable." width="900" />
 <p class="caption">
-Density plots display the estimated probability distribution of a continuous variable.
+Figure 8: Density plots display the estimated probability distribution of a continuous variable.
 </p>
 </div>
 </div>
@@ -580,68 +657,68 @@ Density plots display the estimated probability distribution of a continuous var
 <p>Box plots are used to visualize and compare the median, interquartile range, and outliers of a given dataset. Reserve boxplots for technical reports and scientific articles. Generally, they are not suitable for a general audience. Instead show the distribution of points instead (or do both).</p>
 <p><em>Tips</em></p>
 <ul>
-<li><p>Consider adding a legend explaining the parts of a boxplot (Figure @ref(fig:boxlegend)).</p></li>
+<li><p>Consider adding a legend explaining the parts of a boxplot (Figure <a href="#fig:boxlegend">9</a>).</p></li>
 <li><p>For datasets with few points, consider adding the measured values as points above the boxplots. This can help identify potential issues with the dataset.</p></li>
 </ul>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:boxlegend"></span>
 <img src="index_files/figure-html/boxlegend-1.png" alt="Use boxplots to display the distributional properties of continuous variables" width="900" />
 <p class="caption">
-Use boxplots to display the distributional properties of continuous variables
+Figure 9: Use boxplots to display the distributional properties of continuous variables
 </p>
 </div>
 </div>
 </div>
 <div id="survey-data" class="section level2">
 <h2>Survey data</h2>
-<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure @ref(fig:likert)). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
-<div class="figure" style="text-align: center">
+<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure <a href="#fig:likert">10</a>). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
+<div class="figure" style="text-align: center"><span id="fig:likert"></span>
 <img src="index_files/figure-html/likert-1.png" alt="Likert plots are an option for displaying ordered survey response data." width="900" />
 <p class="caption">
-Likert plots are an option for displaying ordered survey response data.
+Figure 10: Likert plots are an option for displaying ordered survey response data.
 </p>
 </div>
 </div>
 </div>
-<div id="potential-pitfalls" class="section level1">
-<h1>Potential Pitfalls</h1>
+<div id="common-mistakes" class="section level1">
+<h1>Common Mistakes</h1>
 <div id="data-transformations" class="section level2">
 <h2>Data Transformations</h2>
-<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure @ref(fig:logtransform)). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
-<div class="figure" style="text-align: center">
+<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure <a href="#fig:logtransform">11</a>). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
+<div class="figure" style="text-align: center"><span id="fig:logtransform"></span>
 <img src="index_files/figure-html/logtransform-1.png" alt="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)" width="900" />
 <p class="caption">
-Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)
+Figure 11: Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)
 </p>
 </div>
 </div>
 <div id="error-bars" class="section level2">
 <h2>Error Bars</h2>
-<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure @ref(fig:errorbars)).</p>
-<div class="figure" style="text-align: center">
+<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure <a href="#fig:errorbars">12</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:errorbars"></span>
 <img src="index_files/figure-html/errorbars-1.png" alt="Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots." width="800" />
 <p class="caption">
-Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
+Figure 12: Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
 </p>
 </div>
 </div>
 <div id="visualizing-proportions" class="section level2">
 <h2>Visualizing Proportions</h2>
-<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure @ref(fig:pies)). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure @ref(fig:groupedbars)).</p>
-<div class="figure" style="text-align: center">
+<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure <a href="#fig:pies">13</a>). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure <a href="#fig:groupedbars">14</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:pies"></span>
 <img src="index_files/figure-html/pies-1.png" alt="It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right)." width="900" />
 <p class="caption">
-It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
+Figure 13: It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
 </p>
 </div>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:groupedbars"></span>
 <img src="index_files/figure-html/groupedbars-1.png" alt="Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right)." width="900" />
 <p class="caption">
-Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
+Figure 14: Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
 </p>
 </div>
 </div>
-<div id="avoiding-three-dimensional-visualizations" class="section level2">
-<h2>Avoiding Three Dimensional Visualizations</h2>
+<div id="three-dimensions" class="section level2">
+<h2>Three Dimensions</h2>
 <p>Generally speaking, three dimensional visualizations do not translate well to printed figures. Some exceptions topography maps with hillshading, or three dimensional objects (something we rarely encounter in our field). Web graphics that permit rotating of graphs are also a good place to use three dimensional graphics.</p>
 <p>Instead of resorting to x-, y-, and z- scales; combine color, size, or shape to incorporate additional continuous or discrete variables. Finally, some software packages allow the use of small multiples plots. Small multiples plots are essentially a gridded multi-panel plot that subset the data into groups and facilitate quick comparisons across those groups.</p>
 </div>
@@ -652,15 +729,20 @@ Grouped bar plots allow easy comparison of percentages within sites (left). For 
 </div>
 <div id="open-source-resources" class="section level1">
 <h1>Open Source Resources</h1>
-<p>For additional information on choosing and designing data visualization products see the following resources:</p>
+<p>For additional information on choosing and designing data visualization products see the following resources that are available both freely online and in print form.</p>
 <ul>
-<li><p><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a> - Claus Wilke: Web and physical book that is software agnostic and focuses on choosing and designing visualizations.</p></li>
-<li><p><a href="https://socviz.co/">Data Visualization A Practical Introduction</a> - Kieran Healy: Web and physical book walks through choosing and designing visualizations using the R statistical software.</p></li>
+<li><p><em>Claus Wilke</em>. <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization.</a> - Describes how to chose and design data visualization based on data type and the message you want to communicate. The book is software agnostic and mainly describes best practices in data visualization and is highly opinionated about design and aesthetics.</p></li>
+<li><p><em>Hadley Wickham, Garret Grolemund</em>. <a href="https://r4ds.had.co.nz/">R for Data Science.</a> - Focuses on using R as a data processing programming language. Covers the fundamentals of using <code>R</code> and <code>ggplot</code> to do analysis and data visualization. This is highly recommended if you are just getting started using <code>R</code>.</p></li>
+<li><p><em>Jake VanderPlas</em>. <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook.</a> - Introduction to <code>Python</code> as a data analysis programming tool. In particular, a focus on the <code>Matplotlib</code> and <code>Seaborn</code> data visualization libraries.</p></li>
+<li><p><em>Kieran Healy</em>. <a href="https://socviz.co/">Data Visualization: A Practical Introduction.</a> - This book focuses on using <code>R</code> and <code>ggplot2</code> to develop data visualizations. Good follow-up to <em>R for Data Science</em>.</p></li>
+<li><p><em>Victor Olaya</em>. <a href="https://volaya.github.io/gis-book/en/index.html">Introduction to GIS.</a> - An abridged book that introduces GIS concepts and visualization of geographic data. This is a software agnostic book.</p></li>
 </ul>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -693,6 +775,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
