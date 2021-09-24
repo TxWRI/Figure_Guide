@@ -37,6 +37,8 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -323,7 +325,12 @@ div.tocify {
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/txwri/Figure_Guide">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -535,28 +542,18 @@ Optional.
 <div id="chart-parts" class="section level1">
 <h1>Chart Parts</h1>
 <p>All figures must include axis labels. Axis titles (including units) must be included whenever continuous data is used. We recommend use of axis labels for discrete data, but they can be removed if the measurement variable if obvious and the space is needed (countries is an example of an axis label that isn’t always needed). Panel borders are included on all four sides of the plot. Horizontal gridlines are included for technical report figures. Do not use vertical girdlines or axis ticks on minor breaks. However, the use of minor tick marks on log-scaled axis is encouraged.</p>
-<div class="figure" style="text-align: center"><span id="fig:blankprintfig"></span>
-<img src="assets/figures/blank_viz_guide-01.png" alt="Chart parts and specifications for printed visualizations" width="100%" />
-<p class="caption">
-Figure 1: Chart parts and specifications for printed visualizations
-</p>
-</div>
-<div class="figure" style="text-align: center"><span id="fig:blankpresfig"></span>
-<img src="assets/figures/blank_viz_pp_guide-01.png" alt="Chart parts and specifications for web or PowerPoint visualizations" width="100%" />
-<p class="caption">
-Figure 2: Chart parts and specifications for web or PowerPoint visualizations
-</p>
-</div>
+<p><img src="assets/figures/blank_viz_guide-01.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="assets/figures/blank_viz_pp_guide-01.png" width="1322" style="display: block; margin: auto;" /></p>
 <p>Tips:</p>
 <ul>
 <li><p>Titles, subtitles, in-chart source and notes are reserved for stand-alone figures only. Use figure captions to title and explain figures in technical reports.</p></li>
 <li><p>Legends can stretch horizontally along the bottom or stretch vertically on the right.</p></li>
 <li><p>TWRI technical report body is typically 6.5" wide. Export figures at 6.5" wide to take advantage of the full width in the document. Where available, export figures at high resolution (200-300 dpi).</p></li>
-<li><p>Powerpoint slides are either 10" wide x 7.5" tall (4:3 aspect slides) or 13.33" wide x 7.5" tall (16:9 aspect slides). Export figures at these dimensions and high resolution (200-300 dpi) to create a full screen figure.</p></li>
+<li><p>PowerPoint slides are either 10" wide x 7.5" tall (4:3 aspect slides) or 13.33" wide x 7.5" tall (16:9 aspect slides). Export figures at these dimensions and high resolution (200-300 dpi) to create a full screen figure.</p></li>
 </ul>
 <div id="image-formats" class="section level2">
 <h2>Image Formats</h2>
-<p>Generally speaking, .png files are the preferred image format. For photographic images or images where accurate color reproduction is required (some maps for example) use .tiff or .jpeg. For detailed discussion of image formats, see <a href="https://clauswilke.com/dataviz/image-file-formats.html" class="uri">https://clauswilke.com/dataviz/image-file-formats.html</a>.</p>
+<p>Generally speaking, <code>.png</code> files are the preferred image format. For photographic images or images where accurate color reproduction is required (some maps for example) use <code>.tiff</code> or <code>.jpeg</code>. For detailed discussion of image formats, see <a href="https://clauswilke.com/dataviz/image-file-formats.html" class="uri">https://clauswilke.com/dataviz/image-file-formats.html</a>.</p>
 </div>
 </div>
 <div id="color" class="section level1">
@@ -574,49 +571,49 @@ Figure 2: Chart parts and specifications for web or PowerPoint visualizations
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
-<div id="bar-and-column-charts" class="section level2">
-<h2>Bar and Column Charts</h2>
-<p>Bar and column charts are used to compare the magnitude of measured data across different categories or treatments. Bar and column charts can be vertical or horizontal. They can also be grouped or stacked if we want to compare within categorical variables.</p>
+<div id="bar-and-column-plots" class="section level2">
+<h2>Bar and Column Plots</h2>
+<p>Bar and column plots are used to compare the magnitude of measured data across different categories or treatments. Bars and columns can be vertical or horizontal. They can also be grouped or stacked if we want to compare within categorical variables.</p>
 <p><em>Tips</em></p>
 <ul>
 <li><p>Bar height or length must be meaningful relative to each other. Be thoughtful when using log or square root units on the length axis.</p></li>
 <li><p>Bars start at zero (dot plots are preferable if the axis <em>does not</em> start at zero).</p></li>
 <li><p>Consider direct labeling the data values.</p></li>
-<li><p>If axis labels are too long to orient horizontally, flip the graph horizontally.</p></li>
-<li><p>Consider reordering the observation units by value to permit easy comparison (low values to high values)</p></li>
+<li><p>If x-axis labels are very long, flip the graph horizontally.</p></li>
+<li><p>Consider reordering the observation units by value for easy comparison (low values to high values)</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
-<img src="index_files/figure-html/unnamed-chunk-1-1.png" alt="Bar chart and column charts are used to compare one observational variable" width="900" />
+<img src="index_files/figure-html/unnamed-chunk-1-1.png" alt="Bar or column plots are used to compare one observational variable across categories." width="900" />
 <p class="caption">
-Figure 3: Bar chart and column charts are used to compare one observational variable
+Figure 1: Bar or column plots are used to compare one observational variable across categories.
 </p>
 </div>
 </div>
 <div id="line-graphs" class="section level2">
 <h2>Line Graphs</h2>
-<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure <a href="#fig:cumrainfall">4</a>). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
+<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure <a href="#fig:cumrainfall">2</a>). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
 <p><em>Tips</em></p>
 <ul>
-<li><p>If you have many lines, highlight and label the data you want to convey (Figure <a href="#fig:covidline">5</a>).</p></li>
+<li><p>If you have many lines, highlight and label the data you want to convey (Figure <a href="#fig:covidline">3</a>).</p></li>
 <li><p>Discretely measured events should be shown as points, not connected lines. The lines imply data measurements between two discrete events. For example, if your x axis units are day but the measurements are a month apart, use points. However, if your x-axis units are month, then a line is appropriate.</p></li>
 <li><p>Regression lines should be plotted with the data to convey adequacy of the fit.</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:cumrainfall"></span>
-<img src="index_files/figure-html/cumrainfall-1.png" alt="Use colors and directly label lines where possible" width="800" />
+<img src="index_files/figure-html/cumrainfall-1.png" alt="Use colors and directly label lines where possible." width="800" />
 <p class="caption">
-Figure 4: Use colors and directly label lines where possible
+Figure 2: Use colors and directly label lines where possible.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:covidline"></span>
-<img src="index_files/figure-html/covidline-1.png" alt="Highlight important data if there are too many observational units for the reader to discern" width="800" />
+<img src="index_files/figure-html/covidline-1.png" alt="Highlight important data if there are too many observational units for the reader to discern." width="800" />
 <p class="caption">
-Figure 5: Highlight important data if there are too many observational units for the reader to discern
+Figure 3: Highlight important data if there are too many observational units for the reader to discern.
 </p>
 </div>
 </div>
 <div id="scatterplots" class="section level2">
 <h2>Scatterplots</h2>
-<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure <a href="#fig:scatter">6</a>).</p>
+<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure <a href="#fig:scatter">4</a>).</p>
 <p><em>Tips</em></p>
 <ul>
 <li><p>If there is inherent order to the measurements, it may help to connect points with a line.</p></li>
@@ -625,7 +622,7 @@ Figure 5: Highlight important data if there are too many observational units for
 <div class="figure" style="text-align: center"><span id="fig:scatter"></span>
 <img src="index_files/figure-html/scatter-1.png" alt="Scatter plots display the relationship between quantitative variables." width="900" />
 <p class="caption">
-Figure 6: Scatter plots display the relationship between quantitative variables.
+Figure 4: Scatter plots display the relationship between quantitative variables.
 </p>
 </div>
 </div>
@@ -633,22 +630,22 @@ Figure 6: Scatter plots display the relationship between quantitative variables.
 <h2>Distributions</h2>
 <div id="histogram" class="section level3">
 <h3>Histogram</h3>
-<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure <a href="#fig:histogram">7</a>).</p>
+<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure <a href="#fig:histogram">5</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:histogram"></span>
-<img src="index_files/figure-html/histogram-1.png" alt="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins" width="900" />
+<img src="index_files/figure-html/histogram-1.png" alt="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins." width="900" />
 <p class="caption">
-Figure 7: Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins
+Figure 5: Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins.
 </p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="density-plot" class="section level3">
 <h3>Density Plot</h3>
-<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure <a href="#fig:densplot">8</a>). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
+<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure <a href="#fig:densplot">6</a>). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
 <div class="figure" style="text-align: center"><span id="fig:densplot"></span>
 <img src="index_files/figure-html/densplot-1.png" alt="Density plots display the estimated probability distribution of a continuous variable." width="900" />
 <p class="caption">
-Figure 8: Density plots display the estimated probability distribution of a continuous variable.
+Figure 6: Density plots display the estimated probability distribution of a continuous variable.
 </p>
 </div>
 </div>
@@ -657,24 +654,24 @@ Figure 8: Density plots display the estimated probability distribution of a cont
 <p>Box plots are used to visualize and compare the median, interquartile range, and outliers of a given dataset. Reserve boxplots for technical reports and scientific articles. Generally, they are not suitable for a general audience. Instead show the distribution of points instead (or do both).</p>
 <p><em>Tips</em></p>
 <ul>
-<li><p>Consider adding a legend explaining the parts of a boxplot (Figure <a href="#fig:boxlegend">9</a>).</p></li>
+<li><p>Consider adding a legend explaining the parts of a boxplot (Figure <a href="#fig:boxlegend">7</a>).</p></li>
 <li><p>For datasets with few points, consider adding the measured values as points above the boxplots. This can help identify potential issues with the dataset.</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:boxlegend"></span>
-<img src="index_files/figure-html/boxlegend-1.png" alt="Use boxplots to display the distributional properties of continuous variables" width="900" />
+<img src="index_files/figure-html/boxlegend-1.png" alt="Use boxplots to display the distributional properties of continuous variables." width="900" />
 <p class="caption">
-Figure 9: Use boxplots to display the distributional properties of continuous variables
+Figure 7: Use boxplots to display the distributional properties of continuous variables.
 </p>
 </div>
 </div>
 </div>
 <div id="survey-data" class="section level2">
 <h2>Survey data</h2>
-<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure <a href="#fig:likert">10</a>). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
+<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure <a href="#fig:likert">8</a>). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
 <div class="figure" style="text-align: center"><span id="fig:likert"></span>
 <img src="index_files/figure-html/likert-1.png" alt="Likert plots are an option for displaying ordered survey response data." width="900" />
 <p class="caption">
-Figure 10: Likert plots are an option for displaying ordered survey response data.
+Figure 8: Likert plots are an option for displaying ordered survey response data.
 </p>
 </div>
 </div>
@@ -683,37 +680,37 @@ Figure 10: Likert plots are an option for displaying ordered survey response dat
 <h1>Common Mistakes</h1>
 <div id="data-transformations" class="section level2">
 <h2>Data Transformations</h2>
-<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure <a href="#fig:logtransform">11</a>). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
+<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure <a href="#fig:logtransform">9</a>). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
 <div class="figure" style="text-align: center"><span id="fig:logtransform"></span>
-<img src="index_files/figure-html/logtransform-1.png" alt="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)" width="900" />
+<img src="index_files/figure-html/logtransform-1.png" alt="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)." width="900" />
 <p class="caption">
-Figure 11: Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)
+Figure 9: Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right).
 </p>
 </div>
 </div>
 <div id="error-bars" class="section level2">
 <h2>Error Bars</h2>
-<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure <a href="#fig:errorbars">12</a>).</p>
+<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure <a href="#fig:errorbars">10</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:errorbars"></span>
 <img src="index_files/figure-html/errorbars-1.png" alt="Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots." width="800" />
 <p class="caption">
-Figure 12: Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
+Figure 10: Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
 </p>
 </div>
 </div>
 <div id="visualizing-proportions" class="section level2">
 <h2>Visualizing Proportions</h2>
-<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure <a href="#fig:pies">13</a>). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure <a href="#fig:groupedbars">14</a>).</p>
+<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure <a href="#fig:pies">11</a>). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure <a href="#fig:groupedbars">12</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:pies"></span>
 <img src="index_files/figure-html/pies-1.png" alt="It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right)." width="900" />
 <p class="caption">
-Figure 13: It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
+Figure 11: It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:groupedbars"></span>
 <img src="index_files/figure-html/groupedbars-1.png" alt="Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right)." width="900" />
 <p class="caption">
-Figure 14: Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
+Figure 12: Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
 </p>
 </div>
 </div>
@@ -725,7 +722,7 @@ Figure 14: Grouped bar plots allow easy comparison of percentages within sites (
 </div>
 <div id="software-notes" class="section level1">
 <h1>Software Notes</h1>
-<p>You are not restricted to using a specific software for data visualization. Typical software tools include Microsoft Excel, ArcGIS Pro, R Statistical Software, Python, SAS, STATA, or SPSS. While you are not restricted to a particular software you are encouraged to store data files in non-proprietary formats when possible. Comma separated value (CSV) files are plain text files that are readable by just about all software. Excel files (.xls, .xlsx) can be opened by other software, but Excel has a bad habit of automatically formatting data or changing values (especially dates). Keep the raw data in a .csv or related file and do your analysis in a separate .xls file to ensure the raw data is not altered. Scripts written in any other software should also avoid altering the raw data.</p>
+<p>You are not restricted to using a specific software for data visualization. Typical software tools include Microsoft Excel, ArcGIS Pro, R Statistical Software, Python, SAS, STATA, or SPSS. While you are not restricted to a particular software you are encouraged to store data files in non-proprietary formats when possible. Comma separated value (<code>.csv</code>) files are plain text files that are readable by just about all software. Excel files (<code>.xls</code>, <code>.xlsx</code>) can be opened by other software, but Excel has a bad habit of automatically formatting data or changing values (especially dates). Keep the raw data in a <code>.csv</code> or similar text-based file and do your analysis in a separate <code>.xls</code> file to ensure the raw data is not altered. Scripts written in any other software should also avoid altering the raw data.</p>
 </div>
 <div id="open-source-resources" class="section level1">
 <h1>Open Source Resources</h1>
