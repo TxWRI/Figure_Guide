@@ -74,13 +74,13 @@ knitr::kable(typography_table, booktabs = TRUE, escape = F,
 
 All figures must include axis labels. Axis titles (including units) must be included whenever continuous data is used. We recommend use of axis labels for discrete data, but they can be removed if the measurement variable if obvious and the space is needed (countries is an example of an axis label that isn't always needed). Panel borders are included on all four sides of the plot. Horizontal gridlines are included for technical report figures. Do not use vertical girdlines or axis ticks on minor breaks. However, the use of minor tick marks on log-scaled axis is encouraged.
 
-```{r blankprintfig, out.width="100%", fig.cap="Chart parts and specifications for printed visualizations"}
+```{r blankprintfig, fig.cap=NULL, fig.width=8}
 knitr::include_graphics("assets/figures/blank_viz_guide-01.png")
 ```
 
 
 
-```{r blankpresfig, out.width="100%", fig.cap="Chart parts and specifications for web or PowerPoint visualizations"}
+```{r blankpresfig, fig.cap=NULL, fig.width=8}
 knitr::include_graphics("assets/figures/blank_viz_pp_guide-01.png")
 ```
 
@@ -93,11 +93,11 @@ Tips:
  
  - TWRI technical report body is typically 6.5" wide. Export figures at 6.5" wide to take advantage of the full width in the document. Where available, export figures at high resolution (200-300 dpi).
  
- - Powerpoint slides are either 10" wide x 7.5" tall (4:3 aspect slides) or  13.33" wide x 7.5" tall (16:9 aspect slides). Export figures at these dimensions and high resolution (200-300 dpi) to create a full screen figure.
+ - PowerPoint slides are either 10" wide x 7.5" tall (4:3 aspect slides) or  13.33" wide x 7.5" tall (16:9 aspect slides). Export figures at these dimensions and high resolution (200-300 dpi) to create a full screen figure.
  
 ## Image Formats
  
-Generally speaking, .png files are the preferred image format. For photographic images or images where accurate color reproduction is required (some maps for example) use .tiff or .jpeg. For detailed discussion of image formats, see https://clauswilke.com/dataviz/image-file-formats.html.
+Generally speaking, `.png` files are the preferred image format. For photographic images or images where accurate color reproduction is required (some maps for example) use `.tiff` or `.jpeg`. For detailed discussion of image formats, see https://clauswilke.com/dataviz/image-file-formats.html.
 
 # Color
 
@@ -168,7 +168,7 @@ Recognizing that these color palettes are not always suitable or the best option
 *Color Brewer*
 
 [Color Brewer](https://colorbrewer2.org/) provides a set of discrete color palettes, some of which are colorblind friendly. Use the online tool to select colors based on data type, number of categories, and desired properties. Some examples are shown below.
-```{r brewercolors, fig.cap=NULL, fig.width = 950/120, fig.height = 450/120}
+```{r brewercolors, fig.cap=NULL, fig.width = 950/120, fig.height = 480/120}
 tibble(fill = RColorBrewer::brewer.pal(8, name = "Accent"),
        x = 1:length(fill),
        y = 0,
@@ -307,9 +307,9 @@ p1/p2/p3/p4
 
 # Examples
 
-## Bar and Column Charts
+## Bar and Column Plots
 
-Bar and column charts are used to compare the magnitude of measured data across different categories or treatments. Bar and column charts can be vertical or horizontal. They can also be grouped or stacked if we want to compare within categorical variables.
+Bar and column plots are used to compare the magnitude of measured data across different categories or treatments. Bars and columns can be vertical or horizontal. They can also be grouped or stacked if we want to compare within categorical variables.
  
 *Tips*
  
@@ -319,11 +319,11 @@ Bar and column charts are used to compare the magnitude of measured data across 
  
  - Consider direct labeling the data values.
  
- - If axis labels are too long to orient horizontally, flip the graph horizontally.
+ - If x-axis labels are very long, flip the graph horizontally.
  
- - Consider reordering the observation units by value to permit easy comparison (low values to high values)
+ - Consider reordering the observation units by value for easy comparison (low values to high values)
  
-```{r, fig.cap="Bar chart and column charts are used to compare one observational variable", fig.width = 900/120, fig.height = 300/120}
+```{r, fig.cap="Bar or column plots are used to compare one observational variable across categories.", fig.width = 900/120, fig.height = 400/120}
 gapminder %>%
   filter(year == max(year)) %>%
   slice_max(pop, n = 10) %>%
@@ -336,7 +336,7 @@ gapminder %>%
   coord_flip() +
   labs(x = "Country", y = "Population [millions]",
        caption = "Source: Gapminder database (https://www.gapminder.org/data/)",
-       title = "Horizontal Bar Chart") +
+       title = "Horizontal Bar Plot") +
   theme_TWRI_print() +
   theme(panel.grid.major.x = element_line(linetype = "dotted", color = "#d9d9d9"),
         panel.grid.major.y = element_blank())
@@ -357,7 +357,7 @@ Line graphs are typically used to display trends over time. Use different colors
  - Regression lines should be plotted with the data to convey adequacy of the fit.
  
  
-```{r cumrainfall, message=FALSE, warning=FALSE, fig.cap="Use colors and directly label lines where possible", fig.width = 800/120, fig.height = 500/120}
+```{r cumrainfall, message=FALSE, warning=FALSE, fig.cap="Use colors and directly label lines where possible.", fig.width = 800/120, fig.height = 500/120}
 
 water_year <- function(date) {
   ifelse(month(date) < 10, year(date), year(date)+1)}
@@ -397,7 +397,7 @@ ggplot(df) +
 
 
  
-```{r covidline, message=FALSE, warning=FALSE, fig.cap="Highlight important data if there are too many observational units for the reader to discern", fig.width = 800/120, fig.height = 500/120}
+```{r covidline, message=FALSE, warning=FALSE, fig.cap="Highlight important data if there are too many observational units for the reader to discern.", fig.width = 800/120, fig.height = 500/120}
 covid <- readr::read_csv("assets/data/covid.csv")
 
 covid_us <- covid %>%
@@ -465,7 +465,7 @@ df %>%
 
 There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure \@ref(fig:histogram)). 
 
-```{r histogram, fig.cap="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins", fig.width = 900/120, fig.height = 300/120}
+```{r histogram, fig.cap="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins.", fig.width = 900/120, fig.height = 300/120}
 
 readNWISdv(siteNumbers = '04085427',
            "00060") %>%
@@ -513,7 +513,7 @@ Box plots are used to visualize and compare the median, interquartile range, and
  - For datasets with few points, consider adding the measured values as points above the boxplots. This can help identify potential issues with the dataset.
  
 
-```{r boxlegend, fig.cap="Use boxplots to display the distributional properties of continuous variables", fig.width = 900/120, fig.height = 500/120}
+```{r boxlegend, fig.cap="Use boxplots to display the distributional properties of continuous variables.", fig.width = 900/120, fig.height = 500/120}
 ggplot(Dissolved_Oxygen) +
   geom_boxplot(aes(as.factor(Station_ID),
                    Average_DO,
@@ -590,7 +590,7 @@ p1 + theme_TWRI_print() + labs(title = "Example Likert Plot",
 
 Sometimes we transform data for analysis (log-transforming *E. coli* data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure \@ref(fig:logtransform)). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.
 
-```{r logtransform, fig.cap="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)", fig.width = 900/120, fig.height = 500/120}
+```{r logtransform, fig.cap="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right).", fig.width = 900/120, fig.height = 500/120}
 df <- tibble(dates = seq.Date(as.Date("2005-01-01"), as.Date("2020-12-31"), length.out = 100),
              x = rlnorm(100, log(126), log(5)))
 ggplot(df) +
@@ -755,7 +755,7 @@ Instead of resorting to x-, y-, and z- scales; combine color, size, or shape to 
 
 # Software Notes
 
-You are not restricted to using a specific software for data visualization. Typical software tools include Microsoft Excel, ArcGIS Pro, R Statistical Software, Python, SAS, STATA, or SPSS. While you are not restricted to a particular software you are encouraged to store data files in non-proprietary formats when possible. Comma separated value (CSV) files are plain text files that are readable by just about all software. Excel files (.xls, .xlsx) can be opened by other software, but Excel has a bad habit of automatically formatting data or changing values (especially dates). Keep the raw data in a .csv or related file and do your analysis in a separate .xls file to ensure the raw data is not altered. Scripts written in any other software should also avoid altering the raw data.
+You are not restricted to using a specific software for data visualization. Typical software tools include Microsoft Excel, ArcGIS Pro, R Statistical Software, Python, SAS, STATA, or SPSS. While you are not restricted to a particular software you are encouraged to store data files in non-proprietary formats when possible. Comma separated value (`.csv`) files are plain text files that are readable by just about all software. Excel files (`.xls`, `.xlsx`) can be opened by other software, but Excel has a bad habit of automatically formatting data or changing values (especially dates). Keep the raw data in a `.csv` or similar text-based file and do your analysis in a separate `.xls` file to ensure the raw data is not altered. Scripts written in any other software should also avoid altering the raw data.
 
 # Open Source Resources
 

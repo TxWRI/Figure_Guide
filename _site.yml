@@ -9,3 +9,6 @@ output:
 output_dir: docs
 navbar:
   title: "TWRI Data Viz Style Guide"
+  right: 
+    - icon: fa-github
+      href: https://github.com/txwri/Figure_Guide
