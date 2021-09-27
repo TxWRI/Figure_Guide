@@ -322,10 +322,37 @@ div.tocify {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="01-LoadDurationCurve.html">Load Duration Curve</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Downloads
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Figure_Guide.pdf">
+        <span class="fa fa-file-pdf"></span>
+         
+        Figure Guide
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
   <a href="https://github.com/txwri/Figure_Guide">
     <span class="fa fa-github"></span>
      
@@ -558,16 +585,30 @@ Optional.
 </div>
 <div id="color" class="section level1">
 <h1>Color</h1>
-<p>TWRI’s main colors are <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #0054a4 !important;">TWRI Blue (#0054a4)</span>, <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #5d0025 !important;">Maroon (#5d0025)</span>, <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #54565a !important;">Gray (#54565a)</span>, and <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #82adaa !important;">Teal (#82adaa)</span>. Color selection is based on the type of data presented. <em>Categorical</em> data are discrete data with no inherent order. Examples include names or places. <em>Sequential</em> data are ordered in a meaningful manner. Often, sequential data is ordered low to high. <em>Diverging</em> data is a type of sequential data where we are interested in the deviance from a middle neutral value.</p>
-<p>The following color palettes take some of the guess work of choosing colors that are largely consistent with TWRI branding.</p>
-<p><img src="index_files/figure-html/catcolors-1.png" width="900" style="display: block; margin: auto;" /></p>
+<p>TWRI’s main colors are <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #0054a4 !important;">TWRI Blue (#0054a4)</span>, <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #5d0025 !important;">Maroon (#5d0025)</span>, <span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #54565a !important;">Gray (#54565a)</span>, and <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #82adaa !important;">Teal (#82adaa)</span>. Color selection is based on the type of data presented. <em>Categorical</em> data are discrete data with no inherent order. Examples include names or places. <em>Sequential</em> data are ordered in a meaningful manner. Often, sequential data is ordered low to high. <em>Diverging</em> data is a type of sequential data where we are interested in the deviance from a middle neutral value. The color palettes shown in Figure <a href="#fig:catcolors">1</a> take some of the guess work of choosing colors that are largely consistent with TWRI branding.</p>
+<div class="figure" style="text-align: center"><span id="fig:catcolors"></span>
+<img src="index_files/figure-html/catcolors-1.png" alt="Data visualization color palettes that align with institute branding." width="900" />
+<p class="caption">
+Figure 1: Data visualization color palettes that align with institute branding.
+</p>
+</div>
 <p>Recognizing that these color palettes are not always suitable or the best option for visualizing data, consider the following very good color palette resources:</p>
 <p><em>Color Brewer</em></p>
-<p><a href="https://colorbrewer2.org/">Color Brewer</a> provides a set of discrete color palettes, some of which are colorblind friendly. Use the online tool to select colors based on data type, number of categories, and desired properties. Some examples are shown below.
-<img src="index_files/figure-html/brewercolors-1.png" width="950" style="display: block; margin: auto;" /></p>
+<a href="https://colorbrewer2.org/">Color Brewer</a> provides a set of discrete color palettes, some of which are colorblind friendly (Figure <a href="#fig:brewercolors">2</a>). Use the online tool to select colors based on data type, number of categories, and desired properties. Some examples are shown below.
+<div class="figure" style="text-align: center"><span id="fig:brewercolors"></span>
+<img src="index_files/figure-html/brewercolors-1.png" alt="Examples of Color Brewer palettes." width="950" />
+<p class="caption">
+Figure 2: Examples of Color Brewer palettes.
+</p>
+</div>
 <p><em>Continuous Color Scales</em></p>
-<p>The <a href="https://bids.github.io/colormap/">mpl color maps</a> used by default in the matplotlib v2.0 Python library are designed for perpetual uniformity and are color blind friendly. There are implementations in <a href="https://cran.r-project.org/web/packages/viridis/">R</a>, <a href="http://www.met.reading.ac.uk/~ed/viridis.m">MatLab</a>, <a href="https://github.com/politiken-journalism/scale-color-perceptual">JavaScript/D3</a>, and <a href="https://www.arcgis.com/home/group.html?id=c81d01ceaf85406285b694ed2581027b#overview">ArcGIS Pro</a>.</p>
-<p><img src="index_files/figure-html/contcolors-1.png" width="600" style="display: block; margin: auto;" /></p>
+<p>The <a href="https://bids.github.io/colormap/">mpl color maps</a> used by default in the matplotlib v2.0 Python library are designed for perpetual uniformity and are color blind friendly (Figure <a href="#fig:contcolors">3</a>). There are implementations in <a href="https://cran.r-project.org/web/packages/viridis/">R</a>, <a href="http://www.met.reading.ac.uk/~ed/viridis.m">MatLab</a>, <a href="https://github.com/politiken-journalism/scale-color-perceptual">JavaScript/D3</a>, and <a href="https://www.arcgis.com/home/group.html?id=c81d01ceaf85406285b694ed2581027b#overview">ArcGIS Pro</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:contcolors"></span>
+<img src="index_files/figure-html/contcolors-1.png" alt="mpl color palettes are suitable for continuous data." width="600" />
+<p class="caption">
+Figure 3: mpl color palettes are suitable for continuous data.
+</p>
+</div>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
@@ -585,35 +626,35 @@ Optional.
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
 <img src="index_files/figure-html/unnamed-chunk-1-1.png" alt="Bar or column plots are used to compare one observational variable across categories." width="900" />
 <p class="caption">
-Figure 1: Bar or column plots are used to compare one observational variable across categories.
+Figure 4: Bar or column plots are used to compare one observational variable across categories.
 </p>
 </div>
 </div>
 <div id="line-graphs" class="section level2">
 <h2>Line Graphs</h2>
-<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure <a href="#fig:cumrainfall">2</a>). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
+<p>Line graphs are typically used to display trends over time. Use different colors or line types to compare observation units on the same graph (Figure <a href="#fig:cumrainfall">5</a>). Line graphs can also be used to display functional relationships between two variables, regression lines are an example.</p>
 <p><em>Tips</em></p>
 <ul>
-<li><p>If you have many lines, highlight and label the data you want to convey (Figure <a href="#fig:covidline">3</a>).</p></li>
+<li><p>If you have many lines, highlight and label the data you want to convey (Figure <a href="#fig:covidline">6</a>).</p></li>
 <li><p>Discretely measured events should be shown as points, not connected lines. The lines imply data measurements between two discrete events. For example, if your x axis units are day but the measurements are a month apart, use points. However, if your x-axis units are month, then a line is appropriate.</p></li>
 <li><p>Regression lines should be plotted with the data to convey adequacy of the fit.</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:cumrainfall"></span>
 <img src="index_files/figure-html/cumrainfall-1.png" alt="Use colors and directly label lines where possible." width="800" />
 <p class="caption">
-Figure 2: Use colors and directly label lines where possible.
+Figure 5: Use colors and directly label lines where possible.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:covidline"></span>
 <img src="index_files/figure-html/covidline-1.png" alt="Highlight important data if there are too many observational units for the reader to discern." width="800" />
 <p class="caption">
-Figure 3: Highlight important data if there are too many observational units for the reader to discern.
+Figure 6: Highlight important data if there are too many observational units for the reader to discern.
 </p>
 </div>
 </div>
 <div id="scatterplots" class="section level2">
 <h2>Scatterplots</h2>
-<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure <a href="#fig:scatter">4</a>).</p>
+<p>Basic scatterplots are used to display the relationship between two or more quantitative variables. The x and y axis are used to show quantitative measurements. Color and size can be added to convey additional quantitative or qualitative information (Figure <a href="#fig:scatter">7</a>).</p>
 <p><em>Tips</em></p>
 <ul>
 <li><p>If there is inherent order to the measurements, it may help to connect points with a line.</p></li>
@@ -622,7 +663,7 @@ Figure 3: Highlight important data if there are too many observational units for
 <div class="figure" style="text-align: center"><span id="fig:scatter"></span>
 <img src="index_files/figure-html/scatter-1.png" alt="Scatter plots display the relationship between quantitative variables." width="900" />
 <p class="caption">
-Figure 4: Scatter plots display the relationship between quantitative variables.
+Figure 7: Scatter plots display the relationship between quantitative variables.
 </p>
 </div>
 </div>
@@ -630,22 +671,22 @@ Figure 4: Scatter plots display the relationship between quantitative variables.
 <h2>Distributions</h2>
 <div id="histogram" class="section level3">
 <h3>Histogram</h3>
-<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure <a href="#fig:histogram">5</a>).</p>
+<p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure <a href="#fig:histogram">8</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:histogram"></span>
 <img src="index_files/figure-html/histogram-1.png" alt="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins." width="900" />
 <p class="caption">
-Figure 5: Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins.
+Figure 8: Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins.
 </p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="density-plot" class="section level3">
 <h3>Density Plot</h3>
-<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure <a href="#fig:densplot">6</a>). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
+<p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure <a href="#fig:densplot">9</a>). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
 <div class="figure" style="text-align: center"><span id="fig:densplot"></span>
 <img src="index_files/figure-html/densplot-1.png" alt="Density plots display the estimated probability distribution of a continuous variable." width="900" />
 <p class="caption">
-Figure 6: Density plots display the estimated probability distribution of a continuous variable.
+Figure 9: Density plots display the estimated probability distribution of a continuous variable.
 </p>
 </div>
 </div>
@@ -654,24 +695,24 @@ Figure 6: Density plots display the estimated probability distribution of a cont
 <p>Box plots are used to visualize and compare the median, interquartile range, and outliers of a given dataset. Reserve boxplots for technical reports and scientific articles. Generally, they are not suitable for a general audience. Instead show the distribution of points instead (or do both).</p>
 <p><em>Tips</em></p>
 <ul>
-<li><p>Consider adding a legend explaining the parts of a boxplot (Figure <a href="#fig:boxlegend">7</a>).</p></li>
+<li><p>Consider adding a legend explaining the parts of a boxplot (Figure <a href="#fig:boxlegend">10</a>).</p></li>
 <li><p>For datasets with few points, consider adding the measured values as points above the boxplots. This can help identify potential issues with the dataset.</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:boxlegend"></span>
 <img src="index_files/figure-html/boxlegend-1.png" alt="Use boxplots to display the distributional properties of continuous variables." width="900" />
 <p class="caption">
-Figure 7: Use boxplots to display the distributional properties of continuous variables.
+Figure 10: Use boxplots to display the distributional properties of continuous variables.
 </p>
 </div>
 </div>
 </div>
 <div id="survey-data" class="section level2">
 <h2>Survey data</h2>
-<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure <a href="#fig:likert">8</a>). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
+<p>Survey data is often displayed in tables. However, if there is inherent ordering in responses (using a Likert scale for example), we can create compelling visualizations of the distribution of responses. Likert plots center the x-axis on zero and plot “negative” responses to the left and “positive” responses to the right of center (Figure <a href="#fig:likert">11</a>). The downside of this plot is that it is difficult to discern and compare exact values. Simple bar plots or stacked barplots might be more effective depending on the message you need to convey.</p>
 <div class="figure" style="text-align: center"><span id="fig:likert"></span>
 <img src="index_files/figure-html/likert-1.png" alt="Likert plots are an option for displaying ordered survey response data." width="900" />
 <p class="caption">
-Figure 8: Likert plots are an option for displaying ordered survey response data.
+Figure 11: Likert plots are an option for displaying ordered survey response data.
 </p>
 </div>
 </div>
@@ -680,37 +721,37 @@ Figure 8: Likert plots are an option for displaying ordered survey response data
 <h1>Common Mistakes</h1>
 <div id="data-transformations" class="section level2">
 <h2>Data Transformations</h2>
-<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure <a href="#fig:logtransform">9</a>). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
+<p>Sometimes we transform data for analysis (log-transforming <em>E. coli</em> data for example). It is better to back-transform the data when plotting it on a graph and using an appropriate scale on the x- and y-axis (Figure <a href="#fig:logtransform">12</a>). It is difficult to interpret the physical meaning of transformed values, by using appropriate scales we retain both the physical meaning of the measured data and the advantages provided by data transformations.</p>
 <div class="figure" style="text-align: center"><span id="fig:logtransform"></span>
 <img src="index_files/figure-html/logtransform-1.png" alt="Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right)." width="900" />
 <p class="caption">
-Figure 9: Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right).
+Figure 12: Avoid plotting transformed values (left). Plot untransformed values with transformed scales (right).
 </p>
 </div>
 </div>
 <div id="error-bars" class="section level2">
 <h2>Error Bars</h2>
-<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure <a href="#fig:errorbars">10</a>).</p>
+<p>Error bars are conventionally used to display the <em>uncertainty</em> in estimates, not the variability or distribution of measured data. Box-plots and histograms are the appropriate graph to show measurement variability. Where error bars are used, indicate if the bars represent the standard error of the mean or confidence intervals. Do not use error bars for standard deviations or maximum/minimum measurements (Figure <a href="#fig:errorbars">13</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:errorbars"></span>
 <img src="index_files/figure-html/errorbars-1.png" alt="Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots." width="800" />
 <p class="caption">
-Figure 10: Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
+Figure 13: Use error bars to display uncertaintity (standard error, confidence intervals, and prediction intervals) around estimates (mean, median, geomeans). Variability in the data (standard deviation, interquartile range, etc.) should be reflected as histograms, box plots, or other distributional plots.
 </p>
 </div>
 </div>
 <div id="visualizing-proportions" class="section level2">
 <h2>Visualizing Proportions</h2>
-<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure <a href="#fig:pies">11</a>). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure <a href="#fig:groupedbars">12</a>).</p>
+<p>The classic data visualization for proportions is the pie chart. Pie charts work well if they emphasize fractional units like 1/2, 1/3, or 1/4. They don’t work well for comparing small differences between groups. Side by side bar charts are preferred when comparing small differences or there are many groups (Figure <a href="#fig:pies">14</a>). Stacked bar charts probably work best when comparing changes in proportion over time or among treatments (Figure <a href="#fig:groupedbars">15</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:pies"></span>
 <img src="index_files/figure-html/pies-1.png" alt="It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right)." width="900" />
 <p class="caption">
-Figure 11: It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
+Figure 14: It is difficult to discern small percentage differences with pie charts (left). Generally bar charts facilate easy comparisons between many percentage values (right).
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:groupedbars"></span>
 <img src="index_files/figure-html/groupedbars-1.png" alt="Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right)." width="900" />
 <p class="caption">
-Figure 12: Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
+Figure 15: Grouped bar plots allow easy comparison of percentages within sites (left). For comparisons of relative percentages between many sites, stacked bar charts work well at the expense of easily identify exact values (right).
 </p>
 </div>
 </div>

@@ -2,26 +2,48 @@
 
  /*------------- Whole Document---------------- */
  
-@media print {
-  /* paper size and orientation */
-  @page {
-    size: A4;
+.title { string-set: runningtitle content(text)}
+ 
+/* page size */
+@page {
+  size: letter;
+  margin: 1in, 1in, 1in, 1.5in;
+  @top-left {
+    content: string(runningtitle);
+    font-style: italic;
+    font-size: 10px;
+    
   }
-  
-  /* page break */
-  .level1 {
-    break-before: page;
+  @bottom-center {
+    content: counter(page);
+    
+  }
+} /* var(--pagedjs-width) doesn't work in browser when printing */
+
+@page :first {
+  @top-left {
+    content: none;
+  }
+  @top-right {
+    content: none;
+  }
+  @bottom-center {
+    content: none !important;
   }
 }
 
 /* screen viewer (optional) */
 :root {
   --background: whitesmoke;
+  --pagedjs-width: 6in;
+  --pagedjs-height: 9in;
   --color-paper: white;
   --color-mbox: rgba(0, 0, 0, 0.2);
+  --running-title-width: 2.5in;
   --screen-pages-spacing: 5mm;
 }
 
+/* two pages in a row if possible on screen */
 @media screen {
   body {
     background-color: var(--background);
@@ -29,13 +51,13 @@
   }
   .pagedjs_pages {
     display: flex;
-    max-width: var(--pagedjs-width);
+    max-width: calc(var(--pagedjs-width) * 2);
     flex: 0;
     flex-wrap: wrap;
     margin: 0 auto;
   }
   .pagedjs_page {
-    background-color: var(--color-paper);
+    background: var(--color-paper);
     box-shadow: 0 0 0 1px var(--color-mbox);
     flex-shrink: 0;
     flex-grow: 0;
@@ -43,6 +65,64 @@
   }
 }
 
+/* when a row can hold two pages, start first page on the right */
+@media screen and (min-width: 12.32in) {
+  .pagedjs_page {
+    margin: auto 0 var(--screen-pages-spacing) 0;
+  }
+  .pagedjs_first_page {
+    margin-left: var(--pagedjs-width);
+  }
+}
+
+/* use a fixed width body for mobiles */
+@media screen and (max-width:1180px)  {
+  body {
+    width: calc(var(--pagedjs-width) + 2 * var(--screen-pages-spacing));
+  }
+}
+
+
+/* last page or back cover */
+.back-cover {
+  break-before: verso;
+}
+.pagedjs_page:nth-last-of-type(1) {
+  background-image: var(--back-cover);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* page breaks; aka CSS fragmentation */
+.level1 {
+  break-before: recto;
+  page: chapter;
+}
+.front-matter-container .level1 {
+  page: frontmatter;
+}
+.section > h1, .section > h2, .section > h3, .section > h4, .section > h5, .section > h6 {
+  break-after: avoid;
+}
+.footenotes {
+  break-before: always;
+  break-after: always;
+}
+.figure {
+  break-inside: avoid;
+}
+
+/* reset page numbering for main content */
+.main .level1:first-child h1 {
+  counter-reset: page 1;
+}
+
+/* do not break captions */
+caption {
+  break-inside: avoid;
+  break-after: avoid;
+}
 
 /*----------------- Fonts -------------------*/
 
@@ -65,3 +145,19 @@ h1, h2, h3, h4 {
 .caption {
   font-style: italic;
 }
+
+ /*------------- Table formatting---------------- */
+ 
+ table {
+   font-size: 16px;
+ }
+ 
+ th {
+   font-family: 'Oswald', arial, sans-serif;
+   font-weight: 400;
+ }
+ 
+ tbody {
+   font-family: 'Oswald', arial, sans-serif;
+   font-weight: 300;
+ }

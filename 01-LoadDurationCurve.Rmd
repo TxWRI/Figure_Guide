@@ -1,0 +1,37 @@
+---
+title: "Load Duration Curve"
+---
+
+```{r setup, include=FALSE}
+## load libraries
+library(kableExtra)
+library(tibble)
+library(dplyr)
+library(twriTemplates)
+library(ggplot2)
+library(patchwork)
+library(scales)
+library(gapminder)
+library(ggrepel)
+library(cowplot)
+library(ggtext)
+library(lubridate)
+library(likert)
+library(scico)
+library(dataRetrieval)
+
+## this sets our default code chunk options
+knitr::opts_chunk$set(dev = "ragg_png",
+                      echo = FALSE,
+                      fig.align = "center",
+                      fig.cap = TRUE,
+                      fig.retina = 2,
+                      fig.width = 600/120,
+                      fig.height = 300/120,
+                      dpi = 120)
+```
+
+
+# Executive Summary {-}
+
+This document provides a basic example of developing flow duration curves (FDCs) and pollutant load duration curves (LDCs) using R. The purpose of this guide is to get you started. Every project will have unique requirements and different decisions that must be made by the analyst. 
