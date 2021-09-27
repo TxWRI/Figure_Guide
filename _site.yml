@@ -9,6 +9,16 @@ output:
 output_dir: docs
 navbar:
   title: "TWRI Data Viz Style Guide"
-  right: 
+  left:
+    - text: Tutorials
+      menu:
+        - text: Load Duration Curve
+          href: 01-LoadDurationCurve.html
+  right:
+    - text: Downloads
+      menu:
+       - text: Figure Guide
+         icon: fa-file-pdf
+         href: Figure_Guide.pdf
     - icon: fa-github
       href: https://github.com/txwri/Figure_Guide
