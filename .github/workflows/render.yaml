@@ -33,8 +33,8 @@ jobs:
           while read -r cmd
           do
             eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04", package = "RCurl"))')
-          < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04", package = "textshaping"))')
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04", package = "RCurl"));
+          writeLines(remotes::system_requirements("ubuntu", "20.04", package = "textshaping"))')
       
       - name: Cache packages
         uses: actions/cache@v1
