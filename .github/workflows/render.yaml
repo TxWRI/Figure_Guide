@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      RENV_PATHS_ROOT: ~/.local/share/renv
+      
     steps:
       - uses: actions/checkout@v2
 
@@ -19,14 +21,21 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      
+      - name: Cache packages
+        uses: actions/cache@v1
         with:
-          cache-version: 1
-          extra-packages: |
-            rmarkdown
-            pagedown
-
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+            
+      - name: Restore packages
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
+      
       - name: Build site
         run: Rscript -e 'source("render.R")'
 
