@@ -6,7 +6,7 @@ rmarkdown::render_site()
 
 
 temp_page <- tempfile(fileext = ".html")
-rmarkdown::render("index.rmd",
+rmarkdown::render("index.Rmd",
                   output_file = temp_page,
                   output_format = pagedown::html_paged(css = "assets/pagedown_style.css",
                                                        theme = "yeti"))
