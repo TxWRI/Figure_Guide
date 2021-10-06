@@ -1,3 +1,7 @@
+library(rmarkdown)
+library(ragg)
+library(pagedown)
+
 rmarkdown::render_site()
 
 
