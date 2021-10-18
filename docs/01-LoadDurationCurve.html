@@ -61,6 +61,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="assets/style.css" type="text/css" />
 
@@ -373,6 +395,43 @@ div.tocify {
 <div id="executive-summary" class="section level1 unnumbered">
 <h1>Executive Summary</h1>
 <p>This document provides a basic example of developing flow duration curves (FDCs) and pollutant load duration curves (LDCs) using R. The purpose of this guide is to get you started. Every project will have unique requirements and different decisions that must be made by the analyst.</p>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Load duration curves (LDCs) are useful for visually assessing pollutant loading in streams. LDCs are an extension of flow duration curves (FDCs). Flow duration curves are a type of <a href="https://en.wikipedia.org/wiki/Empirical_distribution_function">cumulative distribution function</a> that shows the percent of time (typically days) that streamflow values (typically mean daily streamflow) are exceeded. Specifically, the FDC displays the an exceedance probability <span class="math inline">\(p\)</span> on the x-axis and an associate discharge value <span class="math inline">\(Q\)</span> on the y-axis <span class="citation">(Vogel and Fennessey 1994)</span>.</p>
+<p>When we have a large number of daily streamflow measurements, we can calculate <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[
+p = \frac{M}{n+1}
+\]</span>
+where <span class="math inline">\(M\)</span> is the ranked value (low flow to high flow) of a given value of <span class="math inline">\(Q\)</span> and <span class="math inline">\(n\)</span> is the number of measurements. When we have fewer values, there are several methods for estimating continuous quantiles, typically with linear interpolation between points. If required see <span class="citation">Hyndman and Fan (1996)</span> and <span class="citation">Vogel and Fennessey (1994)</span> for specific details.</p>
+<p>The LDC is calculated directly from the FDC by (1) converting the mean daily discharge (typically cfs) into daily streamflow volume and (2) multiplying the daily stream volume by the allowable pollutant concentration. The result is the allowable daily pollutant load on the y-axis and the exceedance probability on the x-axis. The specific conversion factors will depend on the units used for pollutant concentrations and desired output units. More information about technical consideration in the development of LDCs is available in <span class="citation">U.S. Environmental Protection Agency (2007)</span>. The remainder of this document focuses on the steps to create the FDC and LDC.</p>
+</div>
+<div id="software-and-data" class="section level1">
+<h1>Software and Data</h1>
+<p>This guide uses R statistical software to calculate and develop the curves. However, these calculations are relatively simple and can be easily done in Excel or most any other spreadsheet or statistical software.</p>
+<pre><code>📦ProjectFolder
+│   LDC-Example.Rproj
+│
+├───📂Data
+│       📜SWQM-12517-P31699.txt
+│       📜SWQM-15325-P31699.txt
+│
+└───📂Script
+</code></pre>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hyndman_sample_1996" class="csl-entry">
+Hyndman, Rob J, and Yanan Fan. 1996. <span>“Sample Quantiles in Statistical Packages.”</span> <em>The American Statistician</em> 50 (4): 5. <a href="https://doi.org/10.2307/2684934">https://doi.org/10.2307/2684934</a>.
+</div>
+<div id="ref-us_environmental_protection_agency_approach_2007" class="csl-entry">
+U.S. Environmental Protection Agency. 2007. <span>“An Approach for Using Load Duration Curves in the Development of <span>TMDLs</span>.”</span> <span>EPA</span> 841-B-07-006. U.S. Environmental Protection Agency. <a href="https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P1008ZQA.txt">https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P1008ZQA.txt</a>.
+</div>
+<div id="ref-vogel_flowduration_1994" class="csl-entry">
+Vogel, Richard M., and Neil M. Fennessey. 1994. <span>“Flow‐duration Curves. I: New Interpretation and Confidence Intervals.”</span> <em>Journal of Water Resources Planning and Management</em> 120 (4): 485–504. <a href="https://doi.org/10.1061/(ASCE)0733-9496(1994)120:4(485)">https://doi.org/10.1061/(ASCE)0733-9496(1994)120:4(485)</a>.
+</div>
+</div>
 </div>
 
 
