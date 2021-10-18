@@ -60,28 +60,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-/* for pandoc --citeproc since 2.11 */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="assets/style.css" type="text/css" />
 
@@ -484,7 +462,7 @@ Figure 5: LDC with measured bacteria concentrations.
 <div id="calculate-median-conditions" class="section level2">
 <h2>Calculate Median Conditions</h2>
 <p>We often want to talk to stakeholders about loadings at different flow conditions and presumably different runoff conditions. We can categorize the flow exceedance into different flow conditions and calculation median flows, allowable loads, measured loads, and calculated estimated necessary reductions:</p>
-<pre><code>## # A tibble: 5 x 5
+<pre><code>## # A tibble: 5 × 5
 ##   Flow_Condition   quantileflow     p geomean_sample calcload
 ##   &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 Dry Conditions           12.6  0.75           68.9  2.12e10
@@ -506,15 +484,15 @@ Figure 6: Final LDC.
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-hyndman_sample_1996" class="csl-entry">
-Hyndman, Rob J, and Yanan Fan. 1996. <span>“Sample Quantiles in Statistical Packages.”</span> <em>The American Statistician</em> 50 (4): 5. <a href="https://doi.org/10.2307/2684934">https://doi.org/10.2307/2684934</a>.
+<div id="refs" class="references">
+<div id="ref-hyndman_sample_1996">
+<p>Hyndman, Rob J, and Yanan Fan. 1996. “Sample Quantiles in Statistical Packages.” <em>The American Statistician</em> 50 (4): 5. <a href="https://doi.org/10.2307/2684934">https://doi.org/10.2307/2684934</a>.</p>
 </div>
-<div id="ref-us_environmental_protection_agency_approach_2007" class="csl-entry">
-U.S. Environmental Protection Agency. 2007. <span>“An Approach for Using Load Duration Curves in the Development of <span>TMDLs</span>.”</span> <span>EPA</span> 841-B-07-006. U.S. Environmental Protection Agency. <a href="https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P1008ZQA.txt">https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P1008ZQA.txt</a>.
+<div id="ref-us_environmental_protection_agency_approach_2007">
+<p>U.S. Environmental Protection Agency. 2007. “An Approach for Using Load Duration Curves in the Development of TMDLs.” EPA 841-B-07-006. U.S. Environmental Protection Agency. <a href="https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P1008ZQA.txt">https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P1008ZQA.txt</a>.</p>
 </div>
-<div id="ref-vogel_flowduration_1994" class="csl-entry">
-Vogel, Richard M., and Neil M. Fennessey. 1994. <span>“Flow‐duration Curves. I: New Interpretation and Confidence Intervals.”</span> <em>Journal of Water Resources Planning and Management</em> 120 (4): 485–504. <a href="https://doi.org/10.1061/(ASCE)0733-9496(1994)120:4(485)">https://doi.org/10.1061/(ASCE)0733-9496(1994)120:4(485)</a>.
+<div id="ref-vogel_flowduration_1994">
+<p>Vogel, Richard M., and Neil M. Fennessey. 1994. “Flow‐Duration Curves. I: New Interpretation and Confidence Intervals.” <em>Journal of Water Resources Planning and Management</em> 120 (4): 485–504. <a href="https://doi.org/10.1061/(ASCE)0733-9496(1994)120:4(485)">https://doi.org/10.1061/(ASCE)0733-9496(1994)120:4(485)</a>.</p>
 </div>
 </div>
 </div>
