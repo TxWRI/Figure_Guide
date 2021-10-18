@@ -403,21 +403,107 @@ div.tocify {
 <p><span class="math display">\[
 p = \frac{M}{n+1}
 \]</span>
-where <span class="math inline">\(M\)</span> is the ranked value (low flow to high flow) of a given value of <span class="math inline">\(Q\)</span> and <span class="math inline">\(n\)</span> is the number of measurements. When we have fewer values, there are several methods for estimating continuous quantiles, typically with linear interpolation between points. If required see <span class="citation">Hyndman and Fan (1996)</span> and <span class="citation">Vogel and Fennessey (1994)</span> for specific details.</p>
+where <span class="math inline">\(M\)</span> is the ranked value (low flow to high flow) of a given value of <span class="math inline">\(Q\)</span> and <span class="math inline">\(n\)</span> is the number of measurements. When we have fewer values, there are several methods for estimating continuous quantiles, typically with linear interpolation between points. See <span class="citation">Hyndman and Fan (1996)</span> and <span class="citation">Vogel and Fennessey (1994)</span> for more information.</p>
 <p>The LDC is calculated directly from the FDC by (1) converting the mean daily discharge (typically cfs) into daily streamflow volume and (2) multiplying the daily stream volume by the allowable pollutant concentration. The result is the allowable daily pollutant load on the y-axis and the exceedance probability on the x-axis. The specific conversion factors will depend on the units used for pollutant concentrations and desired output units. More information about technical consideration in the development of LDCs is available in <span class="citation">U.S. Environmental Protection Agency (2007)</span>. The remainder of this document focuses on the steps to create the FDC and LDC.</p>
 </div>
 <div id="software-and-data" class="section level1">
 <h1>Software and Data</h1>
-<p>This guide uses R statistical software to calculate and develop the curves. However, these calculations are relatively simple and can be easily done in Excel or most any other spreadsheet or statistical software.</p>
-<pre><code>📦ProjectFolder
-│   LDC-Example.Rproj
+<p>This guide uses <a href="https://www.r-project.org/">R</a> to calculate and develop the curves. However, these calculations are relatively simple and can be easily done in Excel or most any other spreadsheet or statistical software.</p>
+<p>In this example, the R project folder is structured something like the following:</p>
+<pre><code>
+📦ProjectFolder
+│   📜.Rhistory
+│   📜LDC-Example.Rproj
 │
 ├───📂Data
 │       📜SWQM-12517-P31699.txt
 │       📜SWQM-15325-P31699.txt
 │
+├───📂Figures
+├───📂Output-Data
 └───📂Script
-</code></pre>
+        📜LDC-Script.R
+        📜Download-Discharge.R</code></pre>
+<p>where the water quality data is stored in the data folder, scripts are in the scripts folder, and folders are available for our outputs.</p>
+<div id="r-packages" class="section level2">
+<h2>R Packages</h2>
+<p>The following code chunk installs and loads the R packages that will be used in this example:</p>
+</div>
+</div>
+<div id="download-flow-data" class="section level1">
+<h1>Download Flow Data</h1>
+<p>We can use R to directly download USGS streamflow data if that is going to be used in the project. Setup a script to download and save this data into the data 📂. This ensures the data is locally available for analysis even if the internet or USGS servers are down. In the file tree above, this file is <code>Download-Discharge.R</code>.</p>
+<p>In this example we are downloading mean daily discharge at USGS gage 08162600 (Tres Palacios) using the USGS dataRetrieval package.</p>
+<p>Always plot the data to make sure it looks reasonable and covers the data period we want.</p>
+<div class="figure" style="text-align: center"><span id="fig:plotusgs"></span>
+<img src="01-LoadDurationCurve_files/figure-html/plotusgs-1.png" alt="TRUE" width="600" />
+<p class="caption">
+Figure 1: TRUE
+</p>
+</div>
+</div>
+<div id="read-bacteria-data" class="section level1">
+<h1>Read Bacteria Data</h1>
+<p>If your file structure looks like the example in the software and data section, read in the data like this (modify the file paths and file names as needed):</p>
+Again, plot your data to make sure it looks like what we expect:
+<div class="figure" style="text-align: center"><span id="fig:bacplot"></span>
+<img src="01-LoadDurationCurve_files/figure-html/bacplot-1.png" alt="TRUE" width="600" />
+<p class="caption">
+Figure 2: TRUE
+</p>
+</div>
+</div>
+<div id="flow-duration-curve" class="section level1">
+<h1>Flow Duration Curve</h1>
+<p>As mentioned above, the FDC is a plot of flow exceedance (percent or proportion of daily flows exceeded) on the x-axis and the value on the y-axis. We calculate the exceedance value as the rank divided by n+1. This generally works well but how do we handle tied flow values? Some built in R function can deal with that for us automatically. So instead of manually calculating the rank and flow exceedance values we will use the cumulative distribution functions in R.</p>
+Now we can plot the FDC:
+<div class="figure" style="text-align: center"><span id="fig:fdcplot"></span>
+<img src="01-LoadDurationCurve_files/figure-html/fdcplot-1.png" alt="TRUE" width="600" />
+<p class="caption">
+Figure 3: TRUE
+</p>
+</div>
+</div>
+<div id="load-duration-curve" class="section level1">
+<h1>Load Duration Curve</h1>
+<p>Now we can convert the FDC to an LDC by multiplying the daily flow values by the instream bacteria standard and some conversion factors:</p>
+<div class="figure" style="text-align: center"><span id="fig:basicldc"></span>
+<img src="01-LoadDurationCurve_files/figure-html/basicldc-1.png" alt="TRUE" width="600" />
+<p class="caption">
+Figure 4: TRUE
+</p>
+</div>
+<p>It is useful to overlay the measured bacteria values on the LDC. Here we pair measured bacteria concentrations to daily flow by date. <em>Please note</em>, the method of pairing flow values and bacteria concentrations might vary depending on the project. For example, if there are instantaneous flow values that were taken with the bacteria data, it might make sense to bacteria by flow. Talk with your PI and review the literature to make the right decision.</p>
+<p>Now we can plot an LDC with bacteria loads overlaid:</p>
+<pre><code>## Warning: Removed 7599 rows containing missing values (geom_point).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:ldcwithloads"></span>
+<img src="01-LoadDurationCurve_files/figure-html/ldcwithloads-1.png" alt="TRUE" width="600" />
+<p class="caption">
+Figure 5: TRUE
+</p>
+</div>
+<div id="calculate-median-conditions" class="section level2">
+<h2>Calculate Median Conditions</h2>
+<p>We often want to talk to stakeholders about loadings at different flow conditions and presumably different runoff conditions. We can categorize the flow exceedance into different flow conditions and calculation median flows, allowable loads, measured loads, and calculated estimated necessary reductions:</p>
+<pre><code>## # A tibble: 5 x 5
+##   Flow_Condition   quantileflow     p geomean_sample calcload
+##   &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Dry Conditions           12.6  0.75           68.9  2.12e10
+## 2 Highest Flows           541    0.05          459.   6.07e12
+## 3 Lowest Flows              6.9  0.95          103.   1.74e10
+## 4 Mid-Range Flows          19.6  0.5            95.8  4.59e10
+## 5 Moist Conditions         40.5  0.25          205.   2.03e11</code></pre>
+</div>
+<div id="final-load-duration-curve" class="section level2">
+<h2>Final Load Duration Curve</h2>
+<pre><code>## Warning: Removed 7599 rows containing missing values (geom_point).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:finalldc"></span>
+<img src="01-LoadDurationCurve_files/figure-html/finalldc-1.png" alt="TRUE" width="600" />
+<p class="caption">
+Figure 6: TRUE
+</p>
+</div>
+</div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
