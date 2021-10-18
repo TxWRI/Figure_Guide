@@ -436,9 +436,9 @@ where <span class="math inline">\(M\)</span> is the ranked value (low flow to hi
 <p>In this example we are downloading mean daily discharge at USGS gage 08162600 (Tres Palacios) using the USGS dataRetrieval package.</p>
 <p>Always plot the data to make sure it looks reasonable and covers the data period we want.</p>
 <div class="figure" style="text-align: center"><span id="fig:plotusgs"></span>
-<img src="01-LoadDurationCurve_files/figure-html/plotusgs-1.png" alt="TRUE" width="600" />
+<img src="01-LoadDurationCurve_files/figure-html/plotusgs-1.png" alt="Mean daily flow at USGS-08162600." width="600" />
 <p class="caption">
-Figure 1: TRUE
+Figure 1: Mean daily flow at USGS-08162600.
 </p>
 </div>
 </div>
@@ -447,9 +447,9 @@ Figure 1: TRUE
 <p>If your file structure looks like the example in the software and data section, read in the data like this (modify the file paths and file names as needed):</p>
 Again, plot your data to make sure it looks like what we expect:
 <div class="figure" style="text-align: center"><span id="fig:bacplot"></span>
-<img src="01-LoadDurationCurve_files/figure-html/bacplot-1.png" alt="TRUE" width="600" />
+<img src="01-LoadDurationCurve_files/figure-html/bacplot-1.png" alt="Measured indicator bacteria concentrations at TCEQ-31699" width="600" />
 <p class="caption">
-Figure 2: TRUE
+Figure 2: Measured indicator bacteria concentrations at TCEQ-31699
 </p>
 </div>
 </div>
@@ -458,9 +458,9 @@ Figure 2: TRUE
 <p>As mentioned above, the FDC is a plot of flow exceedance (percent or proportion of daily flows exceeded) on the x-axis and the value on the y-axis. We calculate the exceedance value as the rank divided by n+1. This generally works well but how do we handle tied flow values? Some built in R function can deal with that for us automatically. So instead of manually calculating the rank and flow exceedance values we will use the cumulative distribution functions in R.</p>
 Now we can plot the FDC:
 <div class="figure" style="text-align: center"><span id="fig:fdcplot"></span>
-<img src="01-LoadDurationCurve_files/figure-html/fdcplot-1.png" alt="TRUE" width="600" />
+<img src="01-LoadDurationCurve_files/figure-html/fdcplot-1.png" alt="Flow duration curve." width="600" />
 <p class="caption">
-Figure 3: TRUE
+Figure 3: Flow duration curve.
 </p>
 </div>
 </div>
@@ -468,18 +468,18 @@ Figure 3: TRUE
 <h1>Load Duration Curve</h1>
 <p>Now we can convert the FDC to an LDC by multiplying the daily flow values by the instream bacteria standard and some conversion factors:</p>
 <div class="figure" style="text-align: center"><span id="fig:basicldc"></span>
-<img src="01-LoadDurationCurve_files/figure-html/basicldc-1.png" alt="TRUE" width="600" />
+<img src="01-LoadDurationCurve_files/figure-html/basicldc-1.png" alt="Load duration curve." width="600" />
 <p class="caption">
-Figure 4: TRUE
+Figure 4: Load duration curve.
 </p>
 </div>
 <p>It is useful to overlay the measured bacteria values on the LDC. Here we pair measured bacteria concentrations to daily flow by date. <em>Please note</em>, the method of pairing flow values and bacteria concentrations might vary depending on the project. For example, if there are instantaneous flow values that were taken with the bacteria data, it might make sense to bacteria by flow. Talk with your PI and review the literature to make the right decision.</p>
 <p>Now we can plot an LDC with bacteria loads overlaid:</p>
 <pre><code>## Warning: Removed 7599 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:ldcwithloads"></span>
-<img src="01-LoadDurationCurve_files/figure-html/ldcwithloads-1.png" alt="TRUE" width="600" />
+<img src="01-LoadDurationCurve_files/figure-html/ldcwithloads-1.png" alt="LDC with measured bacteria concentrations." width="700" />
 <p class="caption">
-Figure 5: TRUE
+Figure 5: LDC with measured bacteria concentrations.
 </p>
 </div>
 <div id="calculate-median-conditions" class="section level2">
@@ -498,9 +498,9 @@ Figure 5: TRUE
 <h2>Final Load Duration Curve</h2>
 <pre><code>## Warning: Removed 7599 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:finalldc"></span>
-<img src="01-LoadDurationCurve_files/figure-html/finalldc-1.png" alt="TRUE" width="600" />
+<img src="01-LoadDurationCurve_files/figure-html/finalldc-1.png" alt="Final LDC." width="700" />
 <p class="caption">
-Figure 6: TRUE
+Figure 6: Final LDC.
 </p>
 </div>
 </div>

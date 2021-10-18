@@ -101,7 +101,7 @@ Q_df <- renameNWISColumns(Q_df)
 
 Always plot the data to make sure it looks reasonable and covers the data period we want.
 
-```{r plotusgs}
+```{r plotusgs, fig.cap="Mean daily flow at USGS-08162600."}
 ggplot(Q_df) +
   geom_line(aes(Date, Flow)) +
   theme_TWRI_print()
@@ -145,7 +145,7 @@ df_12517 <- clean_names(df_12517)
 ```
 
 Again, plot your data to make sure it looks like what we expect:
-```{r bacplot}
+```{r bacplot, fig.cap="Measured indicator bacteria concentrations at TCEQ-31699"}
 ggplot(df_12517) +
   geom_point(aes(end_date, value)) +
   scale_y_log10() +
@@ -164,7 +164,7 @@ Q_df <- Q_df %>%
 ```
 
 Now we can plot the FDC:
-```{r fdcplot}
+```{r fdcplot, fig.cap="Flow duration curve."}
 ggplot(Q_df) +
   geom_line(aes(FlowExceedance,
                 Flow)) +
@@ -178,7 +178,7 @@ ggplot(Q_df) +
 
 Now we can convert the FDC to an LDC by multiplying the daily flow values by the instream bacteria standard and some conversion factors:
 
-```{r basicldc}
+```{r basicldc, fig.cap="Load duration curve."}
 Q_df %>%
   ## MPN/100mL * cubic feet/sec * mL/cubic feet * sec/day = mpn/day
   mutate(LDC = (126/100) * Flow * 28316.8 * 86400) -> Q_df
@@ -193,7 +193,7 @@ ggplot(Q_df) +
 
 It is useful to overlay the measured bacteria values on the LDC. Here we pair measured bacteria concentrations to daily flow by date. *Please note*, the method of pairing flow values and bacteria concentrations might vary depending on the project. For example, if there are instantaneous flow values that were taken with the bacteria data, it might make sense to bacteria by flow. Talk with your PI and review the literature to make the right decision.
 
-```{r pair data}
+```{r pairdata}
 Q_df %>%
   ## join bacteria data by date
   left_join(df_12517 %>%
@@ -204,7 +204,7 @@ Q_df %>%
 
 Now we can plot an LDC with bacteria loads overlaid:
 
-```{r ldcwithloads}
+```{r ldcwithloads, fig.width = 700/120, fig.height = 400/120, fig.cap="LDC with measured bacteria concentrations."}
 ggplot(Q_df) +
   geom_line(aes(FlowExceedance, LDC,
                 linetype = "Allowable Load at Geomean Criterion (126 MPN/100 mL)")) +
@@ -246,7 +246,7 @@ load_summary
 
 ## Final Load Duration Curve
 
-```{r finalldc}
+```{r finalldc, fig.width = 700/120, fig.height = 400/120, fig.cap="Final LDC."}
 ggplot(Q_df) +
   geom_vline(xintercept = c(.10, .40, .60, .90), color = "#cccccc") +
   geom_line(aes(FlowExceedance, LDC,
