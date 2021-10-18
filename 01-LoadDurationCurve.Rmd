@@ -15,7 +15,7 @@ library(dataRetrieval)
 
 ## this sets our default code chunk options
 knitr::opts_chunk$set(dev = "ragg_png",
-                      echo = FALSE,
+                      echo = TRUE,
                       fig.align = "center",
                       fig.cap = TRUE,
                       fig.retina = 2,
