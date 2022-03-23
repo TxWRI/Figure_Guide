@@ -405,13 +405,32 @@ where <span class="math inline">\(M\)</span> is the ranked value (low flow to hi
 <div id="r-packages" class="section level2">
 <h2>R Packages</h2>
 <p>The following code chunk installs and loads the R packages that will be used in this example:</p>
+<pre class="r"><code>## install packages from CRAN
+install.packages(c(&quot;dataRetrieval&quot;, &quot;tidyverse&quot;, &quot;janitor&quot;, &quot;remotes&quot;))
+## install package from Github
+remotes::install_github(&quot;TxWRI/twriTemplates&quot;)
+## load packages
+library(dataRetrieval)
+library(tidyverse)
+library(janitor)
+library(twriTemplates)</code></pre>
 </div>
 </div>
 <div id="download-flow-data" class="section level1">
 <h1>Download Flow Data</h1>
 <p>We can use R to directly download USGS streamflow data if that is going to be used in the project. Setup a script to download and save this data into the data 📂. This ensures the data is locally available for analysis even if the internet or USGS servers are down. In the file tree above, this file is <code>Download-Discharge.R</code>.</p>
 <p>In this example we are downloading mean daily discharge at USGS gage 08162600 (Tres Palacios) using the USGS dataRetrieval package.</p>
+<pre class="r"><code>## download mean daily flow from USGS
+Q_df &lt;- readNWISdv(siteNumbers = &quot;08162600&quot;,
+           startDate = &quot;2000-01-01&quot;,
+           endDate = &quot;2020-12-31&quot;,
+           parameterCd = &quot;00060&quot;,
+           statCd = &quot;00003&quot;)
+Q_df &lt;- renameNWISColumns(Q_df)</code></pre>
 <p>Always plot the data to make sure it looks reasonable and covers the data period we want.</p>
+<pre class="r"><code>ggplot(Q_df) +
+  geom_line(aes(Date, Flow)) +
+  theme_TWRI_print()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:plotusgs"></span>
 <img src="01-LoadDurationCurve_files/figure-html/plotusgs-1.png" alt="Mean daily flow at USGS-08162600." width="600" />
 <p class="caption">
@@ -422,7 +441,24 @@ Figure 1: Mean daily flow at USGS-08162600.
 <div id="read-bacteria-data" class="section level1">
 <h1>Read Bacteria Data</h1>
 <p>If your file structure looks like the example in the software and data section, read in the data like this (modify the file paths and file names as needed):</p>
-Again, plot your data to make sure it looks like what we expect:
+<pre class="r"><code>## Read in the bacteria data
+df_12517 &lt;- read_delim(&quot;Data/SWQM-12517-P31699.txt&quot;, 
+    &quot;|&quot;, escape_double = FALSE, col_types = cols(Segment = col_character(), 
+        `Station ID` = col_character(), `Parameter Code` = col_character(), 
+        `End Date` = col_date(format = &quot;%m/%d/%Y&quot;), 
+        `End Time` = col_skip(), `End Depth` = col_skip(), 
+        `Start Date` = col_skip(), `Start Time` = col_skip(), 
+        `Start Depth` = col_skip(), `Composite Category` = col_skip(), 
+        `Composite Type` = col_skip(), `Submitting Entity` = col_skip(), 
+        `Collecting Entity` = col_skip(), 
+        `Monitoring Type` = col_skip(), Comments = col_skip()), 
+    trim_ws = TRUE)
+df_12517 &lt;- clean_names(df_12517)</code></pre>
+<p>Again, plot your data to make sure it looks like what we expect:</p>
+<pre class="r"><code>ggplot(df_12517) +
+  geom_point(aes(end_date, value)) +
+  scale_y_log10() +
+  theme_TWRI_print()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:bacplot"></span>
 <img src="01-LoadDurationCurve_files/figure-html/bacplot-1.png" alt="Measured indicator bacteria concentrations at TCEQ-31699" width="600" />
 <p class="caption">
@@ -433,7 +469,17 @@ Figure 2: Measured indicator bacteria concentrations at TCEQ-31699
 <div id="flow-duration-curve" class="section level1">
 <h1>Flow Duration Curve</h1>
 <p>As mentioned above, the FDC is a plot of flow exceedance (percent or proportion of daily flows exceeded) on the x-axis and the value on the y-axis. We calculate the exceedance value as the rank divided by n+1. This generally works well but how do we handle tied flow values? Some built in R function can deal with that for us automatically. So instead of manually calculating the rank and flow exceedance values we will use the cumulative distribution functions in R.</p>
-Now we can plot the FDC:
+<pre class="r"><code>Q_df &lt;- Q_df %&gt;%
+  select(Date, Flow) %&gt;%
+  mutate(FlowExceedance = 1-cume_dist(Flow)) ## calculates the flow exceedance</code></pre>
+<p>Now we can plot the FDC:</p>
+<pre class="r"><code>ggplot(Q_df) +
+  geom_line(aes(FlowExceedance,
+                Flow)) +
+  scale_y_log10() +
+  labs(x = &quot;Proportion of Days Flow Exceeded&quot;,
+       y = &quot;Flow (cfs)&quot;) +
+  theme_TWRI_print()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:fdcplot"></span>
 <img src="01-LoadDurationCurve_files/figure-html/fdcplot-1.png" alt="Flow duration curve." width="600" />
 <p class="caption">
@@ -444,6 +490,16 @@ Figure 3: Flow duration curve.
 <div id="load-duration-curve" class="section level1">
 <h1>Load Duration Curve</h1>
 <p>Now we can convert the FDC to an LDC by multiplying the daily flow values by the instream bacteria standard and some conversion factors:</p>
+<pre class="r"><code>Q_df %&gt;%
+  ## MPN/100mL * cubic feet/sec * mL/cubic feet * sec/day = mpn/day
+  mutate(LDC = (126/100) * Flow * 28316.8 * 86400) -&gt; Q_df
+
+ggplot(Q_df) +
+  geom_line(aes(FlowExceedance, LDC)) +
+  scale_y_log10() +
+  labs(x = &quot;Proportion of Days Load Exceeded&quot;,
+       y = expression(paste(italic(&quot;E. coli&quot;), &quot; (MPN/day)&quot;))) +
+  theme_TWRI_print()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:basicldc"></span>
 <img src="01-LoadDurationCurve_files/figure-html/basicldc-1.png" alt="Load duration curve." width="600" />
 <p class="caption">
@@ -451,7 +507,26 @@ Figure 4: Load duration curve.
 </p>
 </div>
 <p>It is useful to overlay the measured bacteria values on the LDC. Here we pair measured bacteria concentrations to daily flow by date. <em>Please note</em>, the method of pairing flow values and bacteria concentrations might vary depending on the project. For example, if there are instantaneous flow values that were taken with the bacteria data, it might make sense to bacteria by flow. Talk with your PI and review the literature to make the right decision.</p>
+<pre class="r"><code>Q_df %&gt;%
+  ## join bacteria data by date
+  left_join(df_12517 %&gt;%
+              select(end_date, value),
+            by = c(&quot;Date&quot; = &quot;end_date&quot;)) %&gt;%
+  mutate(MeasuredLoad = (value/100) * Flow * 28316.8 * 86400) -&gt; Q_df</code></pre>
 <p>Now we can plot an LDC with bacteria loads overlaid:</p>
+<pre class="r"><code>ggplot(Q_df) +
+  geom_line(aes(FlowExceedance, LDC,
+                linetype = &quot;Allowable Load at Geomean Criterion (126 MPN/100 mL)&quot;)) +
+  geom_point(aes(FlowExceedance, MeasuredLoad,
+                 shape = &quot;Measurement Value (MPN/day)&quot;,
+                 color = &quot;Measurement Value (MPN/day)&quot;)) +
+  scale_y_log10() +
+  labs(x = &quot;Proportion Time Load Exceeded&quot;,
+       y = expression(paste(italic(&quot;E. coli&quot;), &quot; (MPN/day)&quot;))) +
+  scale_shape_manual(name = &quot;values&quot;, values = c(21)) +
+  scale_color_manual(name = &quot;values&quot;, values = c(&quot;dodgerblue4&quot;)) +
+  theme_TWRI_print() +
+  theme(legend.title = element_blank())</code></pre>
 <pre><code>## Warning: Removed 7599 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:ldcwithloads"></span>
 <img src="01-LoadDurationCurve_files/figure-html/ldcwithloads-1.png" alt="LDC with measured bacteria concentrations." width="700" />
@@ -462,6 +537,20 @@ Figure 5: LDC with measured bacteria concentrations.
 <div id="calculate-median-conditions" class="section level2">
 <h2>Calculate Median Conditions</h2>
 <p>We often want to talk to stakeholders about loadings at different flow conditions and presumably different runoff conditions. We can categorize the flow exceedance into different flow conditions and calculation median flows, allowable loads, measured loads, and calculated estimated necessary reductions:</p>
+<pre class="r"><code>load_summary &lt;- Q_df %&gt;%
+    mutate(Flow_Condition = case_when(
+    FlowExceedance &gt;= 0 &amp; FlowExceedance &lt; 0.1 ~ &quot;Highest Flows&quot;,
+    FlowExceedance &gt;= 0.1 &amp; FlowExceedance &lt; 0.4 ~ &quot;Moist Conditions&quot;,
+    FlowExceedance &gt;= 0.4 &amp; FlowExceedance &lt; 0.6 ~ &quot;Mid-Range Flows&quot;,
+    FlowExceedance &gt;= 0.6 &amp; FlowExceedance &lt; 0.9 ~ &quot;Dry Conditions&quot;,
+    FlowExceedance &gt;= 0.9 &amp; FlowExceedance &lt;= 1 ~ &quot;Lowest Flows&quot;
+  )) %&gt;%
+  group_by(Flow_Condition) %&gt;%
+    summarise(quantileflow = round(quantile(Flow, .5, type = 5, names = FALSE, na.rm = TRUE), 3),
+              p = round(quantile(FlowExceedance, .5, type = 5, names = FALSE, na.rm = TRUE), 2),
+              geomean_sample = DescTools::Gmean(value, na.rm = TRUE),
+              calcload = quantileflow * geomean_sample/100 * 28316.8 * 86400)
+load_summary</code></pre>
 <pre><code>## # A tibble: 5 × 5
 ##   Flow_Condition   quantileflow     p geomean_sample calcload
 ##   &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;
@@ -473,6 +562,31 @@ Figure 5: LDC with measured bacteria concentrations.
 </div>
 <div id="final-load-duration-curve" class="section level2">
 <h2>Final Load Duration Curve</h2>
+<pre class="r"><code>ggplot(Q_df) +
+  geom_vline(xintercept = c(.10, .40, .60, .90), color = &quot;#cccccc&quot;) +
+  geom_line(aes(FlowExceedance, LDC,
+                linetype = &quot;Allowable Load at Geomean Criterion (126 MPN/100 mL)&quot;)) +
+  geom_point(aes(FlowExceedance, MeasuredLoad,
+                 shape = &quot;Measurement Value (MPN/day)&quot;,
+                 color = &quot;Measurement Value (MPN/day)&quot;)) +
+  geom_point(data = load_summary, aes(p, calcload, 
+                                      shape = &quot;Exisiting Geomean Load (MPN/day)&quot;,
+                                      color = &quot;Exisiting Geomean Load (MPN/day)&quot;)) +
+  annotation_logticks(sides = &quot;l&quot;, color = &quot;#cccccc&quot;) +
+  annotate(&quot;text&quot;, x = .05, y = max(Q_df$MeasuredLoad, na.rm = TRUE) + (0.5 * max(Q_df$MeasuredLoad, na.rm = TRUE)), label = &quot;High\nflows&quot;, hjust = 0.5, size = 3, family = &quot;OpenSansCondensed_TWRI&quot;, lineheight = 1) +
+  annotate(&quot;text&quot;, x = .25, y = max(Q_df$MeasuredLoad, na.rm = TRUE) + (0.5 * max(Q_df$MeasuredLoad, na.rm = TRUE)), label = &quot;Moist\nconditions&quot;, hjust = 0.5, size = 3, family = &quot;OpenSansCondensed_TWRI&quot;, lineheight = 1) +
+  annotate(&quot;text&quot;, x = .50, y = max(Q_df$MeasuredLoad, na.rm = TRUE) + (0.5 * max(Q_df$MeasuredLoad, na.rm = TRUE)), label = &quot;Mid-range\nflows&quot;, hjust = 0.5, size = 3, family = &quot;OpenSansCondensed_TWRI&quot;, lineheight = 1) +
+  annotate(&quot;text&quot;, x = .75, y = max(Q_df$MeasuredLoad, na.rm = TRUE) + (0.5 * max(Q_df$MeasuredLoad, na.rm = TRUE)), label = &quot;Dry\nconditions&quot;, hjust = 0.5, size = 3, family = &quot;OpenSansCondensed_TWRI&quot;, lineheight = 1) +
+  annotate(&quot;text&quot;, x = .95, y = max(Q_df$MeasuredLoad, na.rm = TRUE) + (0.5 * max(Q_df$MeasuredLoad, na.rm = TRUE)), label = &quot;Low\nflows&quot;, hjust = 0.5, size = 3, family = &quot;OpenSansCondensed_TWRI&quot;, lineheight = 1) +
+  scale_y_log10() +
+  labs(x = &quot;Proportion Time Load Exceeded&quot;,
+       y = expression(paste(italic(&quot;E. coli&quot;), &quot; (MPN/day)&quot;))) +
+  scale_shape_manual(name = &quot;values&quot;, values = c(12, 21)) +
+  scale_color_manual(name = &quot;values&quot;, values = c(&quot;red&quot;, &quot;dodgerblue4&quot;)) +
+  theme_TWRI_print() +
+  theme(legend.position = &quot;bottom&quot;,
+        legend.direction = &quot;vertical&quot;,
+        legend.title = element_blank())</code></pre>
 <pre><code>## Warning: Removed 7599 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:finalldc"></span>
 <img src="01-LoadDurationCurve_files/figure-html/finalldc-1.png" alt="Final LDC." width="700" />
