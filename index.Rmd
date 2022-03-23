@@ -87,7 +87,7 @@ knitr::include_graphics("assets/figures/blank_viz_pp_guide-01.png")
 
 Tips:
 
- - Titles, subtitles, in-chart source and notes are reserved for stand-alone figures only. Use figure captions to title and explain figures in technical reports.
+ - Titles, subtitles, and in-chart source are reserved for stand-alone figures only. Use figure captions to title and explain figures in technical reports. Notes can be used to define units or abbreviations.
  
  - Legends can stretch horizontally along the bottom or stretch vertically on the right.
  
@@ -480,8 +480,9 @@ readNWISdv(siteNumbers = '04085427',
   scale_y_continuous(expand = expansion(mult = c(0, .1))) +
     labs(x = "Mean daily discharge [cfs]",
        y = "Count",
-       caption = "Source: USGS NWIS") +
-  theme_TWRI_print() + labs(title = "Histogram Example")
+       caption = "Source: USGS NWIS<br>cfs: feet<sup>3</sup>/second") +
+  theme_TWRI_print() + labs(title = "Histogram Example") +
+  theme(plot.caption = element_markdown())
 ```
 
 \newpage
