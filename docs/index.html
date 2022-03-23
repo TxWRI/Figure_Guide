@@ -572,7 +572,7 @@ Optional.
 <p><img src="assets/figures/blank_viz_pp_guide-01.png" width="1322" style="display: block; margin: auto;" /></p>
 <p>Tips:</p>
 <ul>
-<li><p>Titles, subtitles, in-chart source and notes are reserved for stand-alone figures only. Use figure captions to title and explain figures in technical reports.</p></li>
+<li><p>Titles, subtitles, and in-chart source are reserved for stand-alone figures only. Use figure captions to title and explain figures in technical reports. Notes can be used to define units or abbreviations.</p></li>
 <li><p>Legends can stretch horizontally along the bottom or stretch vertically on the right.</p></li>
 <li><p>TWRI technical report body is typically 6.5" wide. Export figures at 6.5" wide to take advantage of the full width in the document. Where available, export figures at high resolution (200-300 dpi).</p></li>
 <li><p>PowerPoint slides are either 10" wide x 7.5" tall (4:3 aspect slides) or 13.33" wide x 7.5" tall (16:9 aspect slides). Export figures at these dimensions and high resolution (200-300 dpi) to create a full screen figure.</p></li>
@@ -671,6 +671,7 @@ Figure 7: Scatter plots display the relationship between quantitative variables.
 <div id="histogram" class="section level3">
 <h3>Histogram</h3>
 <p>There are numerous ways to show distributions. The classic example is a binned histogram showing the count of observations within a specific bin of the data. The shape of the histogram will vary based on the size of the bins, so play around with bin sizes to understand the underlying data distribution. Histograms should be plotted without spaces between the bars (Figure <a href="#fig:histogram">8</a>).</p>
+<pre><code>## Warning: Removed 104 rows containing non-finite values (stat_bin).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:histogram"></span>
 <img src="index_files/figure-html/histogram-1.png" alt="Histograms display the approximate distribution of the data by counting the number of observations within the specifid bins." width="900" />
 <p class="caption">
@@ -682,6 +683,7 @@ Figure 8: Histograms display the approximate distribution of the data by countin
 <div id="density-plot" class="section level3">
 <h3>Density Plot</h3>
 <p>Density plots are an alternate method of visualizing distributions. Density plots attempt to draw the probability distribution with a continuous line (Figure <a href="#fig:densplot">9</a>). If you have many data points, they will generally provide an accurate depiction of the data distribution without having to decide on bin sizes. If it is important to show data missingness, then histograms are a better option.</p>
+<pre><code>## Warning: Removed 104 rows containing non-finite values (stat_density).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:densplot"></span>
 <img src="index_files/figure-html/densplot-1.png" alt="Density plots display the estimated probability distribution of a continuous variable." width="900" />
 <p class="caption">
